@@ -1,0 +1,52 @@
+[
+  {
+    "id": "team_001",
+    "name": "Team Spirit",
+    "tag": "TS",
+    "game": "dota2",
+    "captainId": "admin_001",
+    "players": [
+      {
+        "nickname": "Yatoro",
+        "role": "captain",
+        "steamId": "123456789"
+      },
+      {
+        "nickname": "Larl",
+        "role": "player",
+        "steamId": "987654321"
+      }
+    ],
+    "rating": 1200,
+    "wins": 5,
+    "losses": 2,
+    "draws": 0,
+    "status": "active",
+    "createdAt": "2025-12-29T10:00:00.000Z"
+  },
+  {
+    "id": "team_002",
+    "name": "NAVI",
+    "tag": "NAVI",
+    "game": "cs2",
+    "captainId": "user_001",
+    "players": [
+      {
+        "nickname": "s1mple",
+        "role": "captain",
+        "steamId": "111222333"
+      },
+      {
+        "nickname": "electronic",
+        "role": "player",
+        "steamId": "444555666"
+      }
+    ],
+    "rating": 1150,
+    "wins": 3,
+    "losses": 1,
+    "draws": 0,
+    "status": "active",
+    "createdAt": "2025-12-29T10:00:00.000Z"
+  }
+]
