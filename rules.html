@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правила | CyberTournament Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CYBER TOURNAMENT HUB</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Панель
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <i class="fas fa-users"></i> Команды
+                </a>
+                <a href="tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Турниры
+                </a>
+                <a href="matches.html" class="nav-link">
+                    <i class="fas fa-fist-raised"></i> Матчи
+                </a>
+                <a href="rules.html" class="nav-link active">
+                    <i class="fas fa-book"></i> Правила
+                </a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-shield-alt"></i> Админ
+                </a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <span id="currentUser">Гость</span>
+                    <button class="btn btn-sm btn-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-book"></i> Правила платформы</h1>
+            <p>Ознакомьтесь с правилами участия в турнирах и использования платформы</p>
+        </div>
+
+        <div class="rules-container">
+            <!-- Общие правила -->
+            <div class="rules-section">
+                <h3><i class="fas fa-globe"></i> Общие положения</h3>
+                <ul class="rules-list">
+                    <li>Платформа предназначена для организации и проведения киберспортивных турниров</li>
+                    <li>Участие в турнирах бесплатное для всех зарегистрированных пользователей</li>
+                    <li>Администрация оставляет за собой право изменять правила без предварительного уведомления</li>
+                    <li>Все участники обязаны соблюдать правила честной игры и уважительно относиться к соперникам</li>
+                </ul>
+            </div>
+
+            <!-- Регистрация и аккаунты -->
+            <div class="rules-section">
+                <h3><i class="fas fa-user"></i> Регистрация и аккаунты</h3>
+                <ul class="rules-list">
+                    <li>Один пользователь может иметь только один аккаунт</li>
+                    <li>Запрещено создавать несколько аккаунтов для участия в одном турнире</li>
+                    <li>Информация в профиле должна быть достоверной</li>
+                    <li>Запрещены оскорбительные и провокационные ники</li>
+                    <li>Пользователь несет ответственность за безопасность своего аккаунта</li>
+                </ul>
+            </div>
+
+            <!-- Команды -->
+            <div class="rules-section">
+                <h3><i class="fas fa-users"></i> Команды</h3>
+                <ul class="rules-list">
+                    <li>Один пользователь может быть капитаном только одной команды</li>
+                    <li>Команду создает только капитан</li>
+                    <li>Минимальный состав команды: 1 капитан + 1 игрок</li>
+                    <li>Максимальный состав команды: 10 человек</li>
+                    <li>Капитан отвечает за действия всех членов команды</li>
+                    <li>Название команды не должно содержать оскорблений и нецензурной лексики</li>
+                </ul>
+            </div>
+
+            <!-- Турниры -->
+            <div class="rules-section">
+                <h3><i class="fas fa-trophy"></i> Турниры</h3>
+                <ul class="rules-list">
+                    <li>Минимальное количество команд в турнире: 4</li>
+                    <li>Максимальное количество команд: 32</li>
+                    <li>Форматы матчей: BO1, BO3, BO5</li>
+                    <li>Турниры проводятся по олимпийской системе (проигравший выбывает)</li>
+                    <li>Расписание матчей публикуется заранее</li>
+                    <li>Опоздание на матч более 15 минут приравнивается к техническому поражению</li>
+                </ul>
+            </div>
+
+            <!-- Матчи -->
+            <div class="rules-section">
+                <h3><i class="fas fa-gamepad"></i> Проведение матчей</h3>
+                <ul class="rules-list">
+                    <li>Результаты матчей вводятся капитанами команд</li>
+                    <li>При спорной ситуации необходимо предоставить скриншоты или записи</li>
+                    <li>Запрещено использование читов, багов и другого нечестного ПО</li>
+                    <li>Технические проблемы решаются администрацией турнира</li>
+                    <li>В случае дисконнекта команде дается 10 минут на восстановление</li>
+                </ul>
+            </div>
+
+            <!-- Поведение -->
+            <div class="rules-section">
+                <h3><i class="fas fa-gavel"></i> Поведение и санкции</h3>
+                <ul class="rules-list">
+                    <li>Запрещены оскорбления, угрозы и дискриминация в любой форме</li>
+                    <li>Запрещено саботирование матчей и турниров</li>
+                    <li>Администрация имеет право накладывать санкции за нарушения</li>
+                    <li>Возможные санкции: предупреждение, дисквалификация, бан</li>
+                    <li>Решение администрации является окончательным</li>
+                </ul>
+            </div>
+
+            <!-- Призы и награды -->
+            <div class="rules-section">
+                <h3><i class="fas fa-award"></i> Призы и награды</h3>
+                <ul class="rules-list">
+                    <li>Информация о призах публикуется в описании турнира</li>
+                    <li>Распределение призового фонда указывается организатором</li>
+                    <li>Выплаты производятся в течение 30 дней после окончания турнира</li>
+                    <li>Налоговые обязательства лежат на получателе приза</li>
+                </ul>
+            </div>
+
+            <!-- Конфиденциальность -->
+            <div class="rules-section">
+                <h3><i class="fas fa-shield-alt"></i> Конфиденциальность</h3>
+                <ul class="rules-list">
+                    <li>Персональные данные пользователей защищены</li>
+                    <li>Данные не передаются третьим лицам без согласия пользователя</li>
+                    <li>Статистика матчей является публичной информацией</li>
+                    <li>Пользователь может запросить удаление своих данных</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rules-agreement">
+            <h3><i class="fas fa-check-circle"></i> Соглашение</h3>
+            <p>Регистрируясь на платформе, вы автоматически соглашаетесь со всеми правилами, указанными выше.</p>
+            <p>Нарушение правил может привести к дисквалификации, бану аккаунта или другим санкциям.</p>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>CyberTournament Hub</h3>
+                    </div>
+                    <p class="footer-description">Ведущая платформа для организации и проведения киберспортивных турниров</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a>
+                        <a href="teams.html"><i class="fas fa-users"></i> Команды</a>
+                        <a href="tournaments.html"><i class="fas fa-trophy"></i> Турниры</a>
+                        <a href="matches.html"><i class="fas fa-gamepad"></i> Матчи</a>
+                        <a href="rules.html"><i class="fas fa-book"></i> Правила</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Игры</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-crosshairs"></i> Counter-Strike 2</a>
+                        <a href="#"><i class="fas fa-fist-raised"></i> Dota 2</a>
+                        <a href="#"><i class="fas fa-bullseye"></i> Valorant</a>
+                        <a href="#"><i class="fas fa-crown"></i> League of Legends</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Overwatch 2</a>
+                        <a href="#"><i class="fas fa-bolt"></i> Fortnite</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@cybertournament.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Киберспортивная, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberTournament Hub. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Условия использования</a>
+                    <a href="cookies.html">Политика cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+    });
+    </script>
+</body>
+</html>

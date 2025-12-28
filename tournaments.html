@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Турниры | CyberTournament Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CYBER TOURNAMENT HUB</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Панель
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <i class="fas fa-users"></i> Команды
+                </a>
+                <a href="tournaments.html" class="nav-link active">
+                    <i class="fas fa-trophy"></i> Турниры
+                </a>
+                <a href="matches.html" class="nav-link">
+                    <i class="fas fa-fist-raised"></i> Матчи
+                </a>
+                <a href="rules.html" class="nav-link">
+                    <i class="fas fa-book"></i> Правила
+                </a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-shield-alt"></i> Админ
+                </a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <span id="currentUser">Гость</span>
+                    <button class="btn btn-sm btn-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-trophy"></i> Турниры и сетки</h1>
+            <p>Создавайте турниры, управляйте сетками и следите за результатами</p>
+        </div>
+
+        <!-- Создание турнира -->
+        <div class="card">
+            <h2><i class="fas fa-plus-circle"></i> Создание турнира</h2>
+            
+            <form id="createTournamentForm">
+                <div class="form-group">
+                    <label for="tournamentName"><i class="fas fa-trophy"></i> Название турнира *</label>
+                    <input type="text" id="tournamentName" name="tournament_name" required placeholder="Например: CS2 Championship 2024" minlength="5" maxlength="50">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tournamentGame"><i class="fas fa-gamepad"></i> Игра *</label>
+                        <select id="tournamentGame" name="tournament_game" required>
+                            <option value="">Выберите игру</option>
+                            <option value="cs2">Counter-Strike 2</option>
+                            <option value="dota2">Dota 2</option>
+                            <option value="valorant">Valorant</option>
+                            <option value="lol">League of Legends</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tournamentFormat"><i class="fas fa-sitemap"></i> Формат турнира *</label>
+                        <select id="tournamentFormat" name="tournament_format" required>
+                            <option value="">Выберите формат</option>
+                            <option value="single">Олимпийская система</option>
+                            <option value="double">Двойная элиминация</option>
+                            <option value="round">Круговая система</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tournamentMatchType"><i class="fas fa-gamepad"></i> Формат матчей *</label>
+                        <select id="tournamentMatchType" name="tournament_match_type" required>
+                            <option value="">Выберите формат</option>
+                            <option value="bo1">BO1 (до 1 победы)</option>
+                            <option value="bo3">BO3 (до 2 побед)</option>
+                            <option value="bo5">BO5 (до 3 побед)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tournamentMaxTeams"><i class="fas fa-users"></i> Максимум команд</label>
+                        <select id="tournamentMaxTeams" name="tournament_max_teams">
+                            <option value="4">4 команды</option>
+                            <option value="8">8 команд</option>
+                            <option value="16" selected>16 команд</option>
+                            <option value="32">32 команды</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tournamentDescription"><i class="fas fa-align-left"></i> Описание турнира</label>
+                    <textarea id="tournamentDescription" name="tournament_description" rows="4" placeholder="Опишите детали турнира, правила, призовой фонд..."></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tournamentStartDate"><i class="fas fa-calendar"></i> Дата начала</label>
+                        <input type="date" id="tournamentStartDate" name="tournament_start_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="tournamentEndDate"><i class="fas fa-calendar"></i> Дата окончания</label>
+                        <input type="date" id="tournamentEndDate" name="tournament_end_date">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tournamentPrizePool"><i class="fas fa-trophy"></i> Призовой фонд ($)</label>
+                    <input type="number" id="tournamentPrizePool" name="tournament_prize_pool" placeholder="Например: 10000" min="0">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Создать турнир
+                    </button>
+                    <button type="reset" class="btn btn-outline">
+                        <i class="fas fa-times"></i> Очистить
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Все турниры -->
+        <div class="card">
+            <h2><i class="fas fa-list"></i> Все турниры</h2>
+            <div class="filters">
+                <select id="statusFilter" class="filter-select" onchange="filterTournaments()">
+                    <option value="all">Все статусы</option>
+                    <option value="upcoming">Предстоящие</option>
+                    <option value="active">Активные</option>
+                    <option value="finished">Завершенные</option>
+                </select>
+                <select id="gameTournamentFilter" class="filter-select" onchange="filterTournaments()">
+                    <option value="all">Все игры</option>
+                    <option value="cs2">CS2</option>
+                    <option value="dota2">Dota 2</option>
+                    <option value="valorant">Valorant</option>
+                    <option value="lol">LoL</option>
+                </select>
+            </div>
+            <div id="tournamentsList" class="tournaments-grid">
+                <!-- Турниры будут загружены через JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>CyberTournament Hub</h3>
+                    </div>
+                    <p class="footer-description">Ведущая платформа для организации и проведения киберспортивных турниров</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a>
+                        <a href="teams.html"><i class="fas fa-users"></i> Команды</a>
+                        <a href="tournaments.html"><i class="fas fa-trophy"></i> Турниры</a>
+                        <a href="matches.html"><i class="fas fa-gamepad"></i> Матчи</a>
+                        <a href="rules.html"><i class="fas fa-book"></i> Правила</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Игры</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-crosshairs"></i> Counter-Strike 2</a>
+                        <a href="#"><i class="fas fa-fist-raised"></i> Dota 2</a>
+                        <a href="#"><i class="fas fa-bullseye"></i> Valorant</a>
+                        <a href="#"><i class="fas fa-crown"></i> League of Legends</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Overwatch 2</a>
+                        <a href="#"><i class="fas fa-bolt"></i> Fortnite</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@cybertournament.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Киберспортивная, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberTournament Hub. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Условия использования</a>
+                    <a href="cookies.html">Политика cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/database.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadTournaments();
+        setupTournamentForm();
+        
+        // Устанавливаем минимальную дату для календаря
+        const today = new Date().toISOString().split('T')[0];
+        const startDateInput = document.getElementById('tournamentStartDate');
+        const endDateInput = document.getElementById('tournamentEndDate');
+        
+        if (startDateInput) startDateInput.min = today;
+        if (endDateInput) endDateInput.min = today;
+        
+        if (startDateInput) {
+            startDateInput.value = today;
+            startDateInput.addEventListener('change', function() {
+                if (endDateInput) {
+                    endDateInput.min = startDateInput.value;
+                    if (endDateInput.value && endDateInput.value < startDateInput.value) {
+                        endDateInput.value = startDateInput.value;
+                    }
+                }
+            });
+        }
+    });
+
+    function loadTournaments() {
+        const db = new Database();
+        const tournaments = db.getAllTournaments();
+        const teams = db.getAllTeams();
+        
+        const container = document.getElementById('tournamentsList');
+        
+        if (tournaments.length === 0) {
+            container.innerHTML = `
+                <div class="empty-tournaments">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Нет турниров</h3>
+                    <p>Создайте первый турнир!</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = tournaments.map(tournament => {
+            const statusClass = tournament.status === 'upcoming' ? 'status-upcoming' :
+                             tournament.status === 'active' ? 'status-active' : 'status-finished';
+            const statusText = tournament.status === 'upcoming' ? 'Ожидается' :
+                             tournament.status === 'active' ? 'В процессе' : 'Завершен';
+            
+            // Фильтруем команды турнира
+            const tournamentTeams = teams.filter(team => 
+                tournament.teams.includes(team.id)
+            );
+            
+            const formatText = getFormatText(tournament.format);
+            
+            return `
+                <div class="tournament-card" data-status="${tournament.status}" data-game="${tournament.game}">
+                    <div class="tournament-header">
+                        <h3>${escapeHtml(tournament.name)}</h3>
+                        <span class="tournament-status ${statusClass}">${statusText}</span>
+                    </div>
+                    <div class="tournament-info">
+                        <p><i class="fas fa-gamepad"></i> Игра: ${tournament.game.toUpperCase()}</p>
+                        <p><i class="fas fa-users"></i> Команд: ${tournamentTeams.length}${tournament.maxTeams ? '/' + tournament.maxTeams : ''}</p>
+                        ${tournament.prizePool > 0 ? `<p><i class="fas fa-trophy"></i> Призовой фонд: $${tournament.prizePool.toLocaleString()}</p>` : ''}
+                        ${tournament.description ? `<p class="tournament-desc">${escapeHtml(tournament.description.substring(0, 100))}${tournament.description.length > 100 ? '...' : ''}</p>` : ''}
+                    </div>
+                    <div class="tournament-actions">
+                        <a href="tournament.html?id=${tournament.id}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-eye"></i> Просмотр
+                        </a>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function getFormatText(format) {
+        const formats = {
+            'single': 'Олимпийская система',
+            'double': 'Двойная элиминация',
+            'round': 'Круговая система'
+        };
+        return formats[format] || format;
+    }
+
+    function setupTournamentForm() {
+        const form = document.getElementById('createTournamentForm');
+        if (!form) return;
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const currentUser = checkAuth();
+            if (!currentUser) {
+                showNotification('Для создания турнира необходимо войти в систему', 'error');
+                showAuthModal();
+                return;
+            }
+            
+            const tournamentName = document.getElementById('tournamentName').value;
+            const tournamentGame = document.getElementById('tournamentGame').value;
+            const tournamentFormat = document.getElementById('tournamentFormat').value;
+            const tournamentMatchType = document.getElementById('tournamentMatchType').value;
+            
+            if (tournamentName.length < 5) {
+                showNotification('Название турнира должно быть не менее 5 символов', 'error');
+                return;
+            }
+            
+            if (!tournamentGame) {
+                showNotification('Выберите игру для турнира', 'error');
+                return;
+            }
+            
+            if (!tournamentFormat) {
+                showNotification('Выберите формат турнира', 'error');
+                return;
+            }
+            
+            if (!tournamentMatchType) {
+                showNotification('Выберите формат матчей', 'error');
+                return;
+            }
+            
+            const db = new Database();
+            
+            const tournamentData = {
+                name: tournamentName,
+                game: tournamentGame,
+                creatorId: currentUser.id,
+                description: document.getElementById('tournamentDescription').value,
+                format: tournamentFormat,
+                matchType: tournamentMatchType,
+                maxTeams: parseInt(document.getElementById('tournamentMaxTeams').value),
+                prizePool: parseInt(document.getElementById('tournamentPrizePool').value) || 0,
+                startDate: document.getElementById('tournamentStartDate').value || new Date().toISOString().split('T')[0],
+                endDate: document.getElementById('tournamentEndDate').value || null,
+                teams: []
+            };
+            
+            try {
+                const tournament = db.createTournament(tournamentData);
+                showNotification('Турнир успешно создан!', 'success');
+                form.reset();
+                
+                // Обновляем список турниров
+                loadTournaments();
+                
+                // Перенаправляем на страницу турнира
+                setTimeout(() => {
+                    window.location.href = `tournament.html?id=${tournament.id}`;
+                }, 1500);
+                
+            } catch (error) {
+                showNotification('Ошибка при создании турнира: ' + error.message, 'error');
+            }
+        });
+    }
+
+    function filterTournaments() {
+        const statusFilter = document.getElementById('statusFilter').value;
+        const gameFilter = document.getElementById('gameTournamentFilter').value;
+        const tournamentCards = document.querySelectorAll('.tournament-card');
+        
+        tournamentCards.forEach(card => {
+            const status = card.getAttribute('data-status');
+            const game = card.getAttribute('data-game');
+            
+            let show = true;
+            
+            if (statusFilter !== 'all' && status !== statusFilter) {
+                show = false;
+            }
+            
+            if (gameFilter !== 'all' && game !== gameFilter) {
+                show = false;
+            }
+            
+            card.style.display = show ? 'block' : 'none';
+        });
+    }
+    </script>
+</body>
+</html>

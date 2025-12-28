@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель управления | CyberTournament Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CYBER TOURNAMENT HUB</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="dashboard.html" class="nav-link active">
+                    <i class="fas fa-tachometer-alt"></i> Панель
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <i class="fas fa-users"></i> Команды
+                </a>
+                <a href="tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Турниры
+                </a>
+                <a href="matches.html" class="nav-link">
+                    <i class="fas fa-fist-raised"></i> Матчи
+                </a>
+                <a href="rules.html" class="nav-link">
+                    <i class="fas fa-book"></i> Правила
+                </a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-shield-alt"></i> Админ
+                </a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <span id="currentUser">Гость</span>
+                    <button class="btn btn-sm btn-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-tachometer-alt"></i> Панель управления</h1>
+            <p id="welcomeMessage"></p>
+        </div>
+
+        <div class="dashboard-stats">
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <h3 id="myTeamsCount">0</h3>
+                <p>Мои команды</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-trophy"></i>
+                <h3 id="myTournamentsCount">0</h3>
+                <p>Мои турниры</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-gamepad"></i>
+                <h3 id="myMatchesCount">0</h3>
+                <p>Мои матчи</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-star"></i>
+                <h3 id="myRating">0</h3>
+                <p>Общий рейтинг</p>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Быстрые действия -->
+            <div class="card">
+                <h2><i class="fas fa-bolt"></i> Быстрые действия</h2>
+                <div class="quick-actions">
+                    <a href="teams.html" class="btn btn-primary" id="createTeamBtn">
+                        <i class="fas fa-plus"></i> Создать команду
+                    </a>
+                    <a href="tournaments.html" class="btn btn-success">
+                        <i class="fas fa-trophy"></i> Создать турнир
+                    </a>
+                    <a href="tournaments.html" class="btn btn-info">
+                        <i class="fas fa-list"></i> Мои турниры
+                    </a>
+                </div>
+            </div>
+
+            <!-- Моя команда -->
+            <div class="card">
+                <h2><i class="fas fa-users"></i> Моя команда</h2>
+                <div id="myTeamInfo">
+                    <!-- Будет загружено через JS -->
+                </div>
+            </div>
+
+            <!-- Активные турниры -->
+            <div class="card">
+                <h2><i class="fas fa-trophy"></i> Активные турниры</h2>
+                <div id="activeTournaments">
+                    <!-- Будет загружено через JS -->
+                </div>
+            </div>
+
+            <!-- Предстоящие матчи -->
+            <div class="card">
+                <h2><i class="fas fa-calendar"></i> Предстоящие матчи</h2>
+                <div id="upcomingMatches">
+                    <!-- Будет загружено через JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>CyberTournament Hub</h3>
+                    </div>
+                    <p class="footer-description">Ведущая платформа для организации и проведения киберспортивных турниров</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a>
+                        <a href="teams.html"><i class="fas fa-users"></i> Команды</a>
+                        <a href="tournaments.html"><i class="fas fa-trophy"></i> Турниры</a>
+                        <a href="matches.html"><i class="fas fa-gamepad"></i> Матчи</a>
+                        <a href="rules.html"><i class="fas fa-book"></i> Правила</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Игры</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-crosshairs"></i> Counter-Strike 2</a>
+                        <a href="#"><i class="fas fa-fist-raised"></i> Dota 2</a>
+                        <a href="#"><i class="fas fa-bullseye"></i> Valorant</a>
+                        <a href="#"><i class="fas fa-crown"></i> League of Legends</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Overwatch 2</a>
+                        <a href="#"><i class="fas fa-bolt"></i> Fortnite</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@cybertournament.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Киберспортивная, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberTournament Hub. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Условия использования</a>
+                    <a href="cookies.html">Политика cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/database.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+        loadDashboardData();
+    });
+
+    function checkAuth() {
+        const currentUser = localStorage.getItem('currentUser');
+        if (!currentUser) {
+            window.location.href = 'index.html';
+            return;
+        }
+        
+        const user = JSON.parse(currentUser);
+        document.getElementById('currentUser').textContent = user.nickname || user.username;
+        
+        // Приветствие
+        const hour = new Date().getHours();
+        let greeting;
+        if (hour < 6) greeting = 'Доброй ночи';
+        else if (hour < 12) greeting = 'Доброе утро';
+        else if (hour < 18) greeting = 'Добрый день';
+        else greeting = 'Добрый вечер';
+        
+        document.getElementById('welcomeMessage').textContent = 
+            `${greeting}, ${user.nickname || user.username}!`;
+    }
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'index.html';
+    }
+
+    function loadDashboardData() {
+        const db = new Database();
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        if (!currentUser) return;
+        
+        // Получаем все данные
+        const teams = db.getAllTeams();
+        const tournaments = db.getAllTournaments();
+        const matches = db.getAllMatches();
+        const users = db.getAllUsers();
+        
+        // Фильтруем данные пользователя
+        const userTeams = teams.filter(team => team.captainId === currentUser.id);
+        const userTournaments = tournaments.filter(tournament => tournament.creatorId === currentUser.id);
+        const userMatches = matches.filter(match => 
+            match.team1 && match.team1.captainId === currentUser.id || 
+            match.team2 && match.team2.captainId === currentUser.id
+        );
+        
+        // Обновляем статистику
+        document.getElementById('myTeamsCount').textContent = userTeams.length;
+        document.getElementById('myTournamentsCount').textContent = userTournaments.length;
+        document.getElementById('myMatchesCount').textContent = userMatches.length;
+        document.getElementById('myRating').textContent = userTeams.reduce((sum, team) => sum + (team.rating || 0), 0);
+        
+        // Загружаем команду пользователя
+        loadUserTeam(currentUser, teams);
+        
+        // Загружаем активные турниры
+        loadActiveTournaments(tournaments);
+        
+        // Загружаем предстоящие матчи
+        loadUpcomingMatches(matches, currentUser.id);
+    }
+
+    function loadUserTeam(user, allTeams) {
+        const container = document.getElementById('myTeamInfo');
+        const createTeamBtn = document.getElementById('createTeamBtn');
+        
+        if (user.hasTeam && user.teamId) {
+            const userTeam = allTeams.find(team => team.id === user.teamId);
+            
+            if (userTeam) {
+                const gameName = getGameName(userTeam.game);
+                
+                container.innerHTML = `
+                    <div class="team-info-card">
+                        <div class="team-header">
+                            <h3>${escapeHtml(userTeam.name)} ${userTeam.tag ? '[' + escapeHtml(userTeam.tag) + ']' : ''}</h3>
+                            <span class="team-game">${gameName}</span>
+                        </div>
+                        <div class="team-details">
+                            <p><i class="fas fa-star"></i> Рейтинг: <strong>${userTeam.rating || 1000}</strong></p>
+                            <p><i class="fas fa-trophy"></i> Победы: <strong>${userTeam.wins || 0}</strong></p>
+                            <p><i class="fas fa-times"></i> Поражения: <strong>${userTeam.losses || 0}</strong></p>
+                            <p><i class="fas fa-users"></i> Игроков: <strong>${userTeam.players ? userTeam.players.length : 0}</strong></p>
+                        </div>
+                        <div class="team-actions">
+                            <a href="teams.html" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i> Управление
+                            </a>
+                        </div>
+                    </div>
+                `;
+                
+                createTeamBtn.classList.add('disabled');
+            } else {
+                showNoTeam();
+                createTeamBtn.classList.remove('disabled');
+            }
+        } else {
+            showNoTeam();
+            createTeamBtn.classList.remove('disabled');
+        }
+    }
+
+    function showNoTeam() {
+        document.getElementById('myTeamInfo').innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-users"></i>
+                <h3>Нет команды</h3>
+                <p>Создайте свою первую команду для участия в турнирах</p>
+                <a href="teams.html" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Создать команду
+                </a>
+            </div>
+        `;
+    }
+
+    function loadActiveTournaments(allTournaments) {
+        const container = document.getElementById('activeTournaments');
+        const activeTournaments = allTournaments.filter(t => 
+            t.status === 'active' || t.status === 'upcoming'
+        ).slice(0, 3);
+        
+        if (activeTournaments.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Нет активных турниров</h3>
+                    <p>Создайте турнир или дождитесь начала новых</p>
+                    <a href="tournaments.html" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Создать турнир
+                    </a>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = activeTournaments.map(tournament => {
+            const statusClass = tournament.status === 'upcoming' ? 'status-upcoming' : 'status-active';
+            const statusText = tournament.status === 'upcoming' ? 'Ожидается' : 'В процессе';
+            
+            return `
+                <div class="tournament-item">
+                    <div class="tournament-header">
+                        <h4>${escapeHtml(tournament.name)}</h4>
+                        <span class="tournament-status ${statusClass}">${statusText}</span>
+                    </div>
+                    <div class="tournament-info">
+                        <p><i class="fas fa-gamepad"></i> ${tournament.game.toUpperCase()}</p>
+                        <p><i class="fas fa-users"></i> Команд: ${tournament.teams.length}</p>
+                    </div>
+                    <div class="tournament-actions">
+                        <a href="tournament.html?id=${tournament.id}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-eye"></i> Подробнее
+                        </a>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function loadUpcomingMatches(allMatches, userId) {
+        const container = document.getElementById('upcomingMatches');
+        const upcomingMatches = allMatches.filter(match => 
+            (match.status === 'upcoming' || match.status === 'live') &&
+            (match.team1 && match.team1.captainId === userId || 
+             match.team2 && match.team2.captainId === userId)
+        ).slice(0, 3);
+        
+        if (upcomingMatches.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-calendar"></i>
+                    <h3>Нет предстоящих матчей</h3>
+                    <p>У вас пока нет запланированных матчей</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = upcomingMatches.map(match => {
+            const statusClass = match.status === 'upcoming' ? 'match-upcoming' : 'match-live';
+            const statusText = match.status === 'upcoming' ? 'Ожидается' : 'В прямом эфире';
+            const matchDate = match.date ? new Date(match.date).toLocaleDateString('ru-RU') : 'Дата не указана';
+            
+            return `
+                <div class="match-item">
+                    <div class="match-header">
+                        <h4>${escapeHtml(match.team1.name)} vs ${escapeHtml(match.team2.name)}</h4>
+                        <span class="match-status ${statusClass}">${statusText}</span>
+                    </div>
+                    <div class="match-info">
+                        <p><i class="fas fa-calendar"></i> ${matchDate}</p>
+                        <p><i class="fas fa-trophy"></i> Bo${match.bestOf}</p>
+                    </div>
+                    <div class="match-actions">
+                        <a href="matches.html" class="btn btn-primary btn-sm">
+                            <i class="fas fa-eye"></i> Управление
+                        </a>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function getGameName(gameCode) {
+        const games = {
+            'cs2': 'Counter-Strike 2',
+            'dota2': 'Dota 2',
+            'valorant': 'Valorant',
+            'lol': 'League of Legends'
+        };
+        return games[gameCode] || gameCode;
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function showNotification(message, type = 'info') {
+        const oldNotifications = document.querySelectorAll('.notification');
+        oldNotifications.forEach(n => n.remove());
+        
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        const icons = { 
+            'success': 'check-circle', 
+            'error': 'exclamation-circle', 
+            'warning': 'exclamation-triangle', 
+            'info': 'info-circle' 
+        };
+        notification.innerHTML = `<i class="fas fa-${icons[type] || 'info-circle'}"></i><span>${message}</span>`;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => notification.classList.add('show'), 10);
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Матчи | CyberTournament Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CYBER TOURNAMENT HUB</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Панель
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <i class="fas fa-users"></i> Команды
+                </a>
+                <a href="tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Турниры
+                </a>
+                <a href="matches.html" class="nav-link active">
+                    <i class="fas fa-fist-raised"></i> Матчи
+                </a>
+                <a href="rules.html" class="nav-link">
+                    <i class="fas fa-book"></i> Правила
+                </a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-shield-alt"></i> Админ
+                </a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <span id="currentUser">Гость</span>
+                    <button class="btn btn-sm btn-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-fist-raised"></i> Управление матчами</h1>
+            <p>Следите за матчами, обновляйте результаты и статистику</p>
+        </div>
+
+        <!-- Фильтры матчей -->
+        <div class="card">
+            <div class="match-filters">
+                <select id="matchStatusFilter" class="filter-select" onchange="filterMatches()">
+                    <option value="all">Все статусы</option>
+                    <option value="upcoming">Предстоящие</option>
+                    <option value="live">В прямом эфире</option>
+                    <option value="finished">Завершенные</option>
+                </select>
+                <select id="matchTournamentFilter" class="filter-select" onchange="filterMatches()">
+                    <option value="all">Все турниры</option>
+                    <!-- Турниры будут загружены через JS -->
+                </select>
+                <select id="matchGameFilter" class="filter-select" onchange="filterMatches()">
+                    <option value="all">Все игры</option>
+                    <option value="cs2">CS2</option>
+                    <option value="dota2">Dota 2</option>
+                    <option value="valorant">Valorant</option>
+                    <option value="lol">LoL</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Список матчей -->
+        <div class="card">
+            <h2><i class="fas fa-list"></i> Матчи</h2>
+            <div id="matchesList" class="matches-grid">
+                <!-- Матчи будут загружены через JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно обновления счета -->
+    <div id="updateScoreModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Обновить счет</h3>
+                <button class="modal-close" onclick="closeModal('updateScoreModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="updateScoreForm">
+                    <input type="hidden" id="updateMatchId" value="">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="updateScore1">Счет команды 1</label>
+                            <input type="number" id="updateScore1" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateScore2">Счет команды 2</label>
+                            <input type="number" id="updateScore2" min="0" max="100" required>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary btn-block" onclick="updateMatchScore()">Обновить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно завершения матча -->
+    <div id="finishMatchModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-flag-checkered"></i> Завершить матч</h3>
+                <button class="modal-close" onclick="closeModal('finishMatchModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="finishMatchForm">
+                    <input type="hidden" id="finishMatchId" value="">
+                    
+                    <div class="form-group">
+                        <p>Введите финальный счет матча:</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="finishScore1">Счет команды 1</label>
+                            <input type="number" id="finishScore1" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="finishScore2">Счет команды 2</label>
+                            <input type="number" id="finishScore2" min="0" max="100" required>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn btn-danger btn-block" onclick="finishMatch()">Завершить матч</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>CyberTournament Hub</h3>
+                    </div>
+                    <p class="footer-description">Ведущая платформа для организации и проведения киберспортивных турниров</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a>
+                        <a href="teams.html"><i class="fas fa-users"></i> Команды</a>
+                        <a href="tournaments.html"><i class="fas fa-trophy"></i> Турниры</a>
+                        <a href="matches.html"><i class="fas fa-gamepad"></i> Матчи</a>
+                        <a href="rules.html"><i class="fas fa-book"></i> Правила</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Игры</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-crosshairs"></i> Counter-Strike 2</a>
+                        <a href="#"><i class="fas fa-fist-raised"></i> Dota 2</a>
+                        <a href="#"><i class="fas fa-bullseye"></i> Valorant</a>
+                        <a href="#"><i class="fas fa-crown"></i> League of Legends</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Overwatch 2</a>
+                        <a href="#"><i class="fas fa-bolt"></i> Fortnite</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@cybertournament.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Киберспортивная, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberTournament Hub. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Условия использования</a>
+                    <a href="cookies.html">Политика cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/database.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    let currentUser = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        currentUser = checkAuth();
+        if (!currentUser) {
+            window.location.href = 'index.html';
+            return;
+        }
+        
+        loadMatches();
+        loadTournamentFilter();
+    });
+
+    function loadTournamentFilter() {
+        const db = new Database();
+        const tournaments = db.getAllTournaments();
+        const select = document.getElementById('matchTournamentFilter');
+        
+        tournaments.forEach(tournament => {
+            const option = document.createElement('option');
+            option.value = tournament.id;
+            option.textContent = tournament.name;
+            select.appendChild(option);
+        });
+    }
+
+    function loadMatches() {
+        const db = new Database();
+        const matches = db.getAllMatches();
+        const tournaments = db.getAllTournaments();
+        
+        // Сортируем матчи: предстоящие -> текущие -> завершенные
+        matches.sort((a, b) => {
+            const statusOrder = { 'upcoming': 1, 'live': 2, 'finished': 3 };
+            return (statusOrder[a.status] || 4) - (statusOrder[b.status] || 4);
+        });
+        
+        const container = document.getElementById('matchesList');
+        
+        if (matches.length === 0) {
+            container.innerHTML = `
+                <div class="empty-tournaments">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Нет матчей</h3>
+                    <p>Матчи появятся после создания турниров</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = matches.map(match => {
+            const tournament = tournaments.find(t => t.id === match.tournamentId);
+            const statusClass = match.status === 'upcoming' ? 'match-upcoming' :
+                             match.status === 'live' ? 'match-live' : 'match-finished';
+            const statusText = match.status === 'upcoming' ? 'Ожидается' :
+                             match.status === 'live' ? 'В прямом эфире' : 'Завершен';
+            
+            const matchDate = match.date ? formatDate(match.date) + ' ' + new Date(match.date).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) : 'Дата не указана';
+            
+            return `
+                <div class="match-card" data-status="${match.status}" 
+                     data-tournament="${match.tournamentId}"
+                     data-game="${match.team1 ? match.team1.game : 'cs2'}">
+                    <div class="match-header">
+                        <div class="match-tournament">
+                            ${tournament ? escapeHtml(tournament.name) : 'Турнир не найден'}
+                        </div>
+                        <div class="match-status ${statusClass}">${statusText}</div>
+                    </div>
+                    
+                    <div class="match-teams">
+                        <div class="team-info">
+                            <div class="team-name">${match.team1 ? escapeHtml(match.team1.name) : 'Команда 1'}</div>
+                            ${match.team1 && match.team1.tag ? `<div class="team-tag">[${escapeHtml(match.team1.tag)}]</div>` : ''}
+                        </div>
+                        
+                        <div class="match-vs">VS</div>
+                        
+                        <div class="team-info">
+                            <div class="team-name">${match.team2 ? escapeHtml(match.team2.name) : 'Команда 2'}</div>
+                            ${match.team2 && match.team2.tag ? `<div class="team-tag">[${escapeHtml(match.team2.tag)}]</div>` : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="match-score">
+                        ${match.score1}:${match.score2}
+                        ${match.bestOf > 1 ? `<span class="best-of">Bo${match.bestOf}</span>` : ''}
+                    </div>
+                    
+                    <div class="match-info">
+                        <p><i class="fas fa-calendar"></i> ${matchDate}</p>
+                        ${match.duration ? `<p><i class="fas fa-clock"></i> Длительность: ${match.duration}</p>` : ''}
+                    </div>
+                    
+                    ${match.mapResults && match.mapResults.length > 0 ? `
+                        <div class="map-results">
+                            <h4>Результаты по картам:</h4>
+                            ${match.mapResults.map(map => `
+                                <div class="map-result">
+                                    <span class="map-name">${escapeHtml(map.map)}</span>
+                                    <span class="map-score">${map.score1}:${map.score2}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    <div class="match-actions">
+                        ${match.status === 'upcoming' && canManageMatch(match) ? `
+                            <button class="btn btn-sm btn-warning" onclick="startMatch('${match.id}')">
+                                <i class="fas fa-play"></i> Начать матч
+                            </button>
+                        ` : ''}
+                        
+                        ${match.status === 'live' && canManageMatch(match) ? `
+                            <button class="btn btn-sm btn-success" onclick="showUpdateScoreModal('${match.id}', ${match.score1}, ${match.score2})">
+                                <i class="fas fa-edit"></i> Обновить счет
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="showFinishMatchModal('${match.id}')">
+                                <i class="fas fa-flag-checkered"></i> Завершить
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function canManageMatch(match) {
+        if (!currentUser) return false;
+        if (currentUser.role === 'admin') return true;
+        
+        const isTeam1Captain = match.team1 && match.team1.captainId === currentUser.id;
+        const isTeam2Captain = match.team2 && match.team2.captainId === currentUser.id;
+        
+        return isTeam1Captain || isTeam2Captain;
+    }
+
+    function filterMatches() {
+        const statusFilter = document.getElementById('matchStatusFilter').value;
+        const tournamentFilter = document.getElementById('matchTournamentFilter').value;
+        const gameFilter = document.getElementById('matchGameFilter').value;
+        const matchCards = document.querySelectorAll('.match-card');
+        
+        matchCards.forEach(card => {
+            const status = card.getAttribute('data-status');
+            const tournament = card.getAttribute('data-tournament');
+            const game = card.getAttribute('data-game');
+            
+            let show = true;
+            
+            if (statusFilter !== 'all' && status !== statusFilter) {
+                show = false;
+            }
+            
+            if (tournamentFilter !== 'all' && tournament !== tournamentFilter) {
+                show = false;
+            }
+            
+            if (gameFilter !== 'all' && game !== gameFilter) {
+                show = false;
+            }
+            
+            card.style.display = show ? 'block' : 'none';
+        });
+    }
+
+    function startMatch(matchId) {
+        if (!confirm('Начать матч?')) return;
+        
+        const db = new Database();
+        db.updateMatch(matchId, { status: 'live' });
+        
+        showNotification('Матч начат', 'success');
+        setTimeout(() => {
+            loadMatches();
+        }, 1500);
+    }
+
+    function showUpdateScoreModal(matchId, score1, score2) {
+        document.getElementById('updateMatchId').value = matchId;
+        document.getElementById('updateScore1').value = score1;
+        document.getElementById('updateScore2').value = score2;
+        document.getElementById('updateScoreModal').classList.add('active');
+    }
+
+    function showFinishMatchModal(matchId) {
+        document.getElementById('finishMatchId').value = matchId;
+        document.getElementById('finishScore1').value = 0;
+        document.getElementById('finishScore2').value = 0;
+        document.getElementById('finishMatchModal').classList.add('active');
+    }
+
+    function updateMatchScore() {
+        const matchId = document.getElementById('updateMatchId').value;
+        const score1 = parseInt(document.getElementById('updateScore1').value);
+        const score2 = parseInt(document.getElementById('updateScore2').value);
+        
+        if (isNaN(score1) || isNaN(score2)) {
+            showNotification('Введите корректные значения счета', 'error');
+            return;
+        }
+        
+        const db = new Database();
+        db.updateMatch(matchId, {
+            score1: score1,
+            score2: score2
+        });
+        
+        showNotification('Счет обновлен', 'success');
+        closeModal('updateScoreModal');
+        
+        setTimeout(() => {
+            loadMatches();
+        }, 1500);
+    }
+
+    function finishMatch() {
+        const matchId = document.getElementById('finishMatchId').value;
+        const score1 = parseInt(document.getElementById('finishScore1').value);
+        const score2 = parseInt(document.getElementById('finishScore2').value);
+        
+        if (isNaN(score1) || isNaN(score2)) {
+            showNotification('Введите корректные значения счета', 'error');
+            return;
+        }
+        
+        const db = new Database();
+        db.updateMatch(matchId, {
+            status: 'finished',
+            score1: score1,
+            score2: score2,
+            duration: '01:45:00'
+        });
+        
+        showNotification('Матч завершен', 'success');
+        closeModal('finishMatchModal');
+        
+        setTimeout(() => {
+            loadMatches();
+        }, 1500);
+    }
+    </script>
+</body>
+</html>

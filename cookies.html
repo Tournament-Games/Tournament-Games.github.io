@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика Cookies | CyberTournament Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CYBER TOURNAMENT HUB</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Панель
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <i class="fas fa-users"></i> Команды
+                </a>
+                <a href="tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Турниры
+                </a>
+                <a href="matches.html" class="nav-link">
+                    <i class="fas fa-fist-raised"></i> Матчи
+                </a>
+                <a href="rules.html" class="nav-link">
+                    <i class="fas fa-book"></i> Правила
+                </a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-shield-alt"></i> Админ
+                </a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <span id="currentUser">Гость</span>
+                    <button class="btn btn-sm btn-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-cookie-bite"></i> Политика использования Cookies</h1>
+            <p>Как мы используем файлы cookies на нашем сайте</p>
+        </div>
+        
+        <div class="card">
+            <h2>Что такое cookies?</h2>
+            <p>Cookies — это небольшие текстовые файлы, которые сохраняются на вашем устройстве при посещении веб-сайтов. Они помогают сайтам запоминать ваши предпочтения и улучшают пользовательский опыт.</p>
+            
+            <h2>Зачем мы используем cookies?</h2>
+            <p>Мы используем cookies для следующих целей:</p>
+            <ul class="rules-list">
+                <li>Обеспечение работы основных функций сайта</li>
+                <li>Запоминание ваших предпочтений</li>
+                <li>Анализ использования сайта для его улучшения</li>
+                <li>Обеспечение безопасности платформы</li>
+                <li>Персонализация контента</li>
+            </ul>
+            
+            <h2>Какие типы cookies мы используем?</h2>
+            
+            <h3>1. Необходимые cookies</h3>
+            <p>Эти cookies необходимы для работы сайта и не могут быть отключены:</p>
+            <ul class="rules-list">
+                <li><strong>Сессионные cookies:</strong> Для поддержания сессии пользователя и авторизации</li>
+                <li><strong>Cookies безопасности:</strong> Для защиты от атак и несанкционированного доступа</li>
+                <li><strong>Функциональные cookies:</strong> Для работы основных функций платформы</li>
+            </ul>
+            
+            <h3>2. Функциональные cookies</h3>
+            <p>Эти cookies запоминают ваши настройки и предпочтения:</p>
+            <ul class="rules-list">
+                <li><strong>Языковые предпочтения:</strong> Запоминают выбранный язык интерфейса</li>
+                <li><strong>Настройки темы:</strong> Сохраняют выбор светлой или темной темы</li>
+                <li><strong>Настройки уведомлений:</strong> Запоминают ваши предпочтения по уведомлениям</li>
+                <li><strong>История действий:</strong> Для быстрого доступа к недавним действиям</li>
+            </ul>
+            
+            <h3>3. Аналитические cookies</h3>
+            <p>Эти cookies помогают нам улучшать сайт:</p>
+            <ul class="rules-list">
+                <li><strong>Google Analytics:</strong> Для анализа посещаемости и поведения пользователей</li>
+                <li><strong>Счетчики посещений:</strong> Для статистики использования платформы</li>
+                <li><strong>Анализ эффективности:</strong> Для измерения эффективности функций</li>
+            </ul>
+            
+            <h3>4. Рекламные cookies (третьи стороны)</h3>
+            <p>Мы можем использовать cookies от рекламных партнеров для показа релевантной рекламы.</p>
+            
+            <h2>Как долго хранятся cookies?</h2>
+            <p>Срок хранения cookies зависит от их типа:</p>
+            <ul class="rules-list">
+                <li><strong>Сессионные cookies:</strong> Удаляются при закрытии браузера</li>
+                <li><strong>Постоянные cookies:</strong> Могут храниться от 1 дня до 2 лет</li>
+                <li><strong>Cookies аутентификации:</strong> Хранятся до выхода из системы</li>
+            </ul>
+            
+            <h2>Управление cookies</h2>
+            <p>Вы можете управлять настройками cookies в вашем браузере. Вот инструкции для популярных браузеров:</p>
+            
+            <h3>Google Chrome</h3>
+            <ul class="rules-list">
+                <li>Настройки → Конфиденциальность и безопасность</li>
+                <li>Файлы cookie и другие данные сайтов</li>
+                <li>Настройка разрешений для отдельных сайтов</li>
+            </ul>
+            
+            <h3>Mozilla Firefox</h3>
+            <ul class="rules-list">
+                <li>Настройки → Конфиденциальность и защита</li>
+                <li>Файлы cookie и данные сайтов</li>
+                <li>Управление исключениями</li>
+            </ul>
+            
+            <h3>Safari</h3>
+            <ul class="rules-list">
+                <li>Настройки → Конфиденциальность</li>
+                <li>Управление данными веб-сайтов</li>
+                <li>Удаление или блокировка cookies</li>
+            </ul>
+            
+            <h3>Microsoft Edge</h3>
+            <ul class="rules-list">
+                <li>Настройки → Файлы cookie и разрешения сайтов</li>
+                <li>Управление и удаление cookies</li>
+                <li>Блокировка сторонних cookies</li>
+            </ul>
+            
+            <h3>Opera</h3>
+            <ul class="rules-list">
+                <li>Настройки → Конфиденциальность и безопасность</li>
+                <li>Настройки сайта → Файлы cookie и данные сайтов</li>
+            </ul>
+            
+            <h2>Контроль cookies на нашей платформе</h2>
+            <p>На платформе CyberTournament Hub вы можете:</p>
+            <ul class="rules-list">
+                <li>Управлять настройками уведомлений в личном кабинете</li>
+                <li>Очищать историю просмотров</li>
+                <li>Настраивать параметры конфиденциальности</li>
+                <li>Экспортировать и удалять свои данные</li>
+            </ul>
+            
+            <h2>Отказ от cookies</h2>
+            <p>Вы можете отказаться от использования cookies, настроив соответствующим образом ваш браузер. Однако это может ограничить функциональность сайта:</p>
+            <ul class="rules-list">
+                <li>Невозможность авторизации на платформе</li>
+                <li>Потеря сохраненных настроек</li>
+                <li>Ограничение функциональности турниров</li>
+                <li>Проблемы с отображением контента</li>
+            </ul>
+            
+            <h2>Cookies третьих сторон</h2>
+            <p>Мы можем использовать cookies от следующих сторонних сервисов:</p>
+            <ul class="rules-list">
+                <li><strong>Google Analytics:</strong> Для аналитики (политика Google)</li>
+                <li><strong>VK Widgets:</strong> Для социальных функций (политика VK)</li>
+                <li><strong>Discord API:</strong> Для интеграции с Discord (политика Discord)</li>
+                <li><strong>YouTube:</strong> Для встраивания видео (политика YouTube)</li>
+            </ul>
+            
+            <h2>Безопасность cookies</h2>
+            <p>Мы принимаем меры для защиты cookies:</p>
+            <ul class="rules-list">
+                <li>Используем HTTPS для шифрования данных</li>
+                <li>Устанавливаем флаги безопасности для cookies</li>
+                <li>Регулярно обновляем системы безопасности</li>
+                <li>Ограничиваем доступ к cookies</li>
+            </ul>
+            
+            <h2>Изменения в политике cookies</h2>
+            <p>Мы можем обновлять политику использования cookies. Все изменения будут опубликованы на этой странице. Рекомендуем периодически проверять обновления.</p>
+            
+            <h2>Правовая основа</h2>
+            <p>Использование cookies регулируется:</p>
+            <ul class="rules-list">
+                <li>Законодательством Российской Федерации</li>
+                <li>Общим регламентом по защите данных (GDPR) для пользователей из ЕС</li>
+                <li>Нашей <a href="privacy.html">Политикой конфиденциальности</a></li>
+            </ul>
+            
+            <h2>Контакты</h2>
+            <p>По вопросам политики cookies обращайтесь:</p>
+            <ul class="rules-list">
+                <li><strong>Email:</strong> privacy@cybertournament.ru</li>
+                <li><strong>Телефон:</strong> +7 (999) 123-45-67</li>
+                <li><strong>Адрес:</strong> Москва, ул. Киберспортивная, 15</li>
+            </ul>
+            
+            <h2>Ваши права</h2>
+            <p>В соответствии с законодательством вы имеете право:</p>
+            <ul class="rules-list">
+                <li>Получать информацию об используемых cookies</li>
+                <li>Управлять настройками cookies</li>
+                <li>Отказаться от использования cookies</li>
+                <li>Запросить удаление ваших данных</li>
+            </ul>
+            
+            <div class="rules-agreement">
+                <h3><i class="fas fa-cookie"></i> Согласие на использование cookies</h3>
+                <p>Продолжая использовать наш сайт, вы соглашаетесь на использование cookies в соответствии с настоящей политикой.</p>
+                <p>Если вы не согласны с использованием cookies, пожалуйста, настройте ваш браузер соответствующим образом или прекратите использование платформы.</p>
+                <p><strong>Дата последнего обновления:</strong> 29 декабря 2025 года</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>CyberTournament Hub</h3>
+                    </div>
+                    <p class="footer-description">Ведущая платформа для организации и проведения киберспортивных турниров</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a>
+                        <a href="teams.html"><i class="fas fa-users"></i> Команды</a>
+                        <a href="tournaments.html"><i class="fas fa-trophy"></i> Турниры</a>
+                        <a href="matches.html"><i class="fas fa-gamepad"></i> Матчи</a>
+                        <a href="rules.html"><i class="fas fa-book"></i> Правила</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Игры</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-crosshairs"></i> Counter-Strike 2</a>
+                        <a href="#"><i class="fas fa-fist-raised"></i> Dota 2</a>
+                        <a href="#"><i class="fas fa-bullseye"></i> Valorant</a>
+                        <a href="#"><i class="fas fa-crown"></i> League of Legends</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Overwatch 2</a>
+                        <a href="#"><i class="fas fa-bolt"></i> Fortnite</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@cybertournament.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Киберспортивная, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberTournament Hub. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Условия использования</a>
+                    <a href="cookies.html">Политика cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+    });
+    </script>
+</body>
+</html>

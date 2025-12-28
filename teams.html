@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Команды | CyberTournament Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CYBER TOURNAMENT HUB</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Панель
+                </a>
+                <a href="teams.html" class="nav-link active">
+                    <i class="fas fa-users"></i> Команды
+                </a>
+                <a href="tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Турниры
+                </a>
+                <a href="matches.html" class="nav-link">
+                    <i class="fas fa-fist-raised"></i> Матчи
+                </a>
+                <a href="rules.html" class="nav-link">
+                    <i class="fas fa-book"></i> Правила
+                </a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-shield-alt"></i> Админ
+                </a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <span id="currentUser">Гость</span>
+                    <button class="btn btn-sm btn-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-users"></i> Управление командами</h1>
+            <p>Создавайте команды, управляйте составом и участвуйте в турнирах</p>
+        </div>
+
+        <!-- Создание/управление командой -->
+        <div class="card" id="teamManagement">
+            <!-- Будет загружено через JS -->
+        </div>
+
+        <!-- Все команды -->
+        <div class="card">
+            <h2><i class="fas fa-list"></i> Все команды</h2>
+            <div class="filters">
+                <select id="gameFilter" class="filter-select" onchange="filterTeams()">
+                    <option value="all">Все игры</option>
+                    <option value="cs2">CS2</option>
+                    <option value="dota2">Dota 2</option>
+                    <option value="valorant">Valorant</option>
+                    <option value="lol">LoL</option>
+                </select>
+                <input type="text" id="searchTeams" placeholder="Поиск команд..." class="search-input" oninput="filterTeams()">
+            </div>
+            <div id="teamsList" class="teams-grid">
+                <!-- Команды будут загружены через JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>CyberTournament Hub</h3>
+                    </div>
+                    <p class="footer-description">Ведущая платформа для организации и проведения киберспортивных турниров</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a>
+                        <a href="teams.html"><i class="fas fa-users"></i> Команды</a>
+                        <a href="tournaments.html"><i class="fas fa-trophy"></i> Турниры</a>
+                        <a href="matches.html"><i class="fas fa-gamepad"></i> Матчи</a>
+                        <a href="rules.html"><i class="fas fa-book"></i> Правила</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Игры</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-crosshairs"></i> Counter-Strike 2</a>
+                        <a href="#"><i class="fas fa-fist-raised"></i> Dota 2</a>
+                        <a href="#"><i class="fas fa-bullseye"></i> Valorant</a>
+                        <a href="#"><i class="fas fa-crown"></i> League of Legends</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Overwatch 2</a>
+                        <a href="#"><i class="fas fa-bolt"></i> Fortnite</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@cybertournament.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Киберспортивная, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberTournament Hub. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Условия использования</a>
+                    <a href="cookies.html">Политика cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/database.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    let playerCount = 1;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        loadTeams();
+        loadTeamManagement();
+    });
+
+    function loadTeamManagement() {
+        const currentUser = checkAuth();
+        if (!currentUser) {
+            window.location.href = 'index.html';
+            return;
+        }
+        
+        const db = new Database();
+        const teams = db.getAllTeams();
+        const container = document.getElementById('teamManagement');
+        
+        const userTeam = teams.find(team => team.captainId === currentUser.id);
+        
+        if (userTeam && currentUser.role !== 'admin') {
+            // Показываем информацию о команде
+            container.innerHTML = `
+                <h2><i class="fas fa-edit"></i> Управление командой</h2>
+                <div class="team-info-card">
+                    <div class="team-header">
+                        <h3>${escapeHtml(userTeam.name)} ${userTeam.tag ? '[' + escapeHtml(userTeam.tag) + ']' : ''}</h3>
+                        <span class="team-game">${getGameName(userTeam.game)}</span>
+                    </div>
+                    <div class="team-details">
+                        <p><i class="fas fa-star"></i> Рейтинг: <strong>${userTeam.rating || 1000}</strong></p>
+                        <p><i class="fas fa-trophy"></i> Победы: <strong>${userTeam.wins || 0}</strong></p>
+                        <p><i class="fas fa-times"></i> Поражения: <strong>${userTeam.losses || 0}</strong></p>
+                    </div>
+                    <div class="team-players">
+                        <h4>Состав команды:</h4>
+                        ${userTeam.players.map(player => `
+                            <div class="player-item ${player.role === 'captain' ? 'captain' : ''}">
+                                <i class="fas fa-user"></i>
+                                <span>${escapeHtml(player.nickname)}</span>
+                                <span class="player-role">${getRoleName(player.role)}</span>
+                                ${player.steamId ? `<small>Steam: ${escapeHtml(player.steamId)}</small>` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="team-actions">
+                        <button class="btn btn-danger" onclick="deleteTeam('${userTeam.id}')">
+                            <i class="fas fa-trash"></i> Удалить команду
+                        </button>
+                    </div>
+                </div>
+            `;
+        } else {
+            // Показываем форму создания команды
+            const isAdmin = currentUser.role === 'admin';
+            container.innerHTML = `
+                <h2><i class="fas fa-plus-circle"></i> ${isAdmin ? 'Создание команды' : 'Создание вашей команды'}</h2>
+                ${isAdmin ? '<p class="admin-note"><i class="fas fa-shield-alt"></i> Администратор может создавать несколько команд</p>' : ''}
+                
+                <form id="createTeamForm">
+                    <div class="form-group">
+                        <label for="teamName"><i class="fas fa-user-tag"></i> Название команды *</label>
+                        <input type="text" id="teamName" name="team_name" required placeholder="Например: NAVI, Virtus.pro" minlength="2" maxlength="30">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="teamTag"><i class="fas fa-hashtag"></i> Тег команды (2-5 букв)</label>
+                            <input type="text" id="teamTag" name="team_tag" placeholder="NAVI, VP, TS" maxlength="5" pattern="[A-Za-z0-9]{2,5}">
+                            <small>Будет отображаться в турнирных таблицах</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamGame"><i class="fas fa-gamepad"></i> Игра *</label>
+                            <select id="teamGame" name="team_game" required>
+                                <option value="">Выберите игру</option>
+                                <option value="cs2">Counter-Strike 2</option>
+                                <option value="dota2">Dota 2</option>
+                                <option value="valorant">Valorant</option>
+                                <option value="lol">League of Legends</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-users"></i> Состав команды *</label>
+                        <div id="playersContainer">
+                            <div class="player-row">
+                                <input type="text" name="player_nickname_1" class="player-nickname" placeholder="Игрок 1 (капитан)" required>
+                                <select name="player_role_1" class="player-role">
+                                    <option value="captain">Капитан</option>
+                                </select>
+                                <input type="text" name="player_steam_1" class="player-steam" placeholder="Steam ID (опционально)">
+                            </div>
+                        </div>
+                        <div class="players-controls">
+                            <button type="button" class="btn btn-sm" onclick="addPlayerRow()">
+                                <i class="fas fa-plus"></i> Добавить игрока
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="removePlayerRow()">
+                                <i class="fas fa-minus"></i> Удалить игрока
+                            </button>
+                        </div>
+                        <small>Минимум 1 игрок (капитан). Максимум 10 игроков.</small>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Создать команду
+                        </button>
+                        <button type="button" class="btn btn-outline" onclick="clearTeamForm()">
+                            <i class="fas fa-times"></i> Очистить
+                        </button>
+                    </div>
+                </form>
+            `;
+            
+            setupTeamForm();
+        }
+    }
+
+    function setupTeamForm() {
+        const form = document.getElementById('createTeamForm');
+        if (!form) return;
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const isAdmin = currentUser.role === 'admin';
+            
+            if (!isAdmin && currentUser.hasTeam) {
+                showNotification('У вас уже есть команда. Удалите текущую, чтобы создать новую.', 'error');
+                return;
+            }
+            
+            // Собираем игроков
+            const players = [];
+            const inputs = form.querySelectorAll('input[name^="player_nickname_"]');
+            
+            inputs.forEach((input, index) => {
+                const nickname = input.value.trim();
+                if (nickname) {
+                    const roleSelect = form.querySelector(`select[name="player_role_${index + 1}"]`);
+                    const steamInput = form.querySelector(`input[name="player_steam_${index + 1}"]`);
+                    
+                    players.push({
+                        nickname: nickname,
+                        role: index === 0 ? 'captain' : (roleSelect ? roleSelect.value : 'player'),
+                        steamId: steamInput ? steamInput.value.trim() : null
+                    });
+                }
+            });
+            
+            if (players.length === 0) {
+                showNotification('Добавьте хотя бы одного игрока', 'error');
+                return;
+            }
+            
+            const teamData = {
+                name: document.getElementById('teamName').value.trim(),
+                tag: document.getElementById('teamTag').value.trim().toUpperCase(),
+                game: document.getElementById('teamGame').value,
+                captainId: currentUser.id,
+                players: players
+            };
+            
+            const db = new Database();
+            
+            try {
+                const team = db.createTeam(teamData);
+                showNotification('Команда успешно создана!', 'success');
+                
+                // Обновляем данные пользователя в localStorage
+                if (!isAdmin) {
+                    currentUser.hasTeam = true;
+                    currentUser.teamId = team.id;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+                
+                // Перезагружаем страницу
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+                
+            } catch (error) {
+                showNotification('Ошибка: ' + error.message, 'error');
+            }
+        });
+    }
+
+    function addPlayerRow() {
+        const container = document.getElementById('playersContainer');
+        const playerRows = container.querySelectorAll('.player-row');
+        
+        if (playerRows.length >= 10) {
+            showNotification('Максимум 10 игроков в команде', 'warning');
+            return;
+        }
+        
+        playerCount++;
+        const newRow = document.createElement('div');
+        newRow.className = 'player-row';
+        newRow.innerHTML = `
+            <input type="text" name="player_nickname_${playerCount}" class="player-nickname" placeholder="Ник игрока" required>
+            <select name="player_role_${playerCount}" class="player-role">
+                <option value="player">Игрок</option>
+                <option value="substitute">Запасной</option>
+            </select>
+            <input type="text" name="player_steam_${playerCount}" class="player-steam" placeholder="Steam ID (опционально)">
+        `;
+        
+        container.appendChild(newRow);
+    }
+
+    function removePlayerRow() {
+        const container = document.getElementById('playersContainer');
+        const playerRows = container.querySelectorAll('.player-row');
+        
+        if (playerRows.length <= 1) {
+            showNotification('В команде должен быть хотя бы один игрок', 'warning');
+            return;
+        }
+        
+        const lastRow = playerRows[playerRows.length - 1];
+        lastRow.remove();
+        playerCount--;
+    }
+
+    function clearTeamForm() {
+        const form = document.getElementById('createTeamForm');
+        if (form) {
+            form.reset();
+            const playersContainer = document.getElementById('playersContainer');
+            playersContainer.innerHTML = `
+                <div class="player-row">
+                    <input type="text" name="player_nickname_1" class="player-nickname" placeholder="Игрок 1 (капитан)" required>
+                    <select name="player_role_1" class="player-role">
+                        <option value="captain">Капитан</option>
+                    </select>
+                    <input type="text" name="player_steam_1" class="player-steam" placeholder="Steam ID (опционально)">
+                </div>
+            `;
+            playerCount = 1;
+        }
+    }
+
+    function deleteTeam(teamId) {
+        if (!confirm('Вы уверены, что хотите удалить команду?')) {
+            return;
+        }
+        
+        const db = new Database();
+        const success = db.deleteTeam(teamId);
+        
+        if (success) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser.role !== 'admin') {
+                currentUser.hasTeam = false;
+                currentUser.teamId = null;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            }
+            
+            showNotification('Команда удалена', 'success');
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        } else {
+            showNotification('Ошибка при удалении команды', 'error');
+        }
+    }
+
+    function loadTeams() {
+        const db = new Database();
+        const teams = db.getAllTeams();
+        const users = db.getAllUsers();
+        
+        const container = document.getElementById('teamsList');
+        
+        if (teams.length === 0) {
+            container.innerHTML = `
+                <div class="empty-tournaments">
+                    <i class="fas fa-users"></i>
+                    <h3>Нет команд</h3>
+                    <p>Создайте первую команду!</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = teams.map(team => {
+            const captain = users.find(u => u.id === team.captainId);
+            
+            return `
+                <div class="team-card" data-game="${team.game}" 
+                     data-name="${team.name.toLowerCase()}"
+                     data-tag="${(team.tag || '').toLowerCase()}">
+                    <div class="team-header">
+                        <div class="team-name">${escapeHtml(team.name)}</div>
+                        ${team.tag ? `<span class="team-tag">[${escapeHtml(team.tag)}]</span>` : ''}
+                    </div>
+                    <div class="team-game">${getGameName(team.game)}</div>
+                    <div class="team-info">
+                        <p><i class="fas fa-user"></i> Капитан: ${captain ? escapeHtml(captain.username) : 'Неизвестно'}</p>
+                        <p><i class="fas fa-users"></i> Игроков: ${team.players.length}</p>
+                        <p><i class="fas fa-star"></i> Рейтинг: ${team.rating || 1000}</p>
+                        <p><i class="fas fa-trophy"></i> Победы: ${team.wins || 0}</p>
+                    </div>
+                    <div class="team-players">
+                        <h4>Состав:</h4>
+                        ${team.players.map(player => `
+                            <div class="player-item ${player.role === 'captain' ? 'captain' : ''}">
+                                <i class="fas fa-user"></i>
+                                <span>${escapeHtml(player.nickname)}</span>
+                                <span class="player-role">${getRoleName(player.role)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function filterTeams() {
+        const gameFilter = document.getElementById('gameFilter').value;
+        const searchInput = document.getElementById('searchTeams').value.toLowerCase();
+        const teamCards = document.querySelectorAll('.team-card');
+        
+        teamCards.forEach(card => {
+            const game = card.getAttribute('data-game');
+            const name = card.getAttribute('data-name');
+            const tag = card.getAttribute('data-tag');
+            
+            let show = true;
+            
+            if (gameFilter !== 'all' && game !== gameFilter) {
+                show = false;
+            }
+            
+            if (searchInput && !name.includes(searchInput) && !tag.includes(searchInput)) {
+                show = false;
+            }
+            
+            card.style.display = show ? 'block' : 'none';
+        });
+    }
+    </script>
+</body>
+</html>

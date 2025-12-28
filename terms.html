@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Условия использования | CyberTournament Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CYBER TOURNAMENT HUB</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Панель
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <i class="fas fa-users"></i> Команды
+                </a>
+                <a href="tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Турниры
+                </a>
+                <a href="matches.html" class="nav-link">
+                    <i class="fas fa-fist-raised"></i> Матчи
+                </a>
+                <a href="rules.html" class="nav-link">
+                    <i class="fas fa-book"></i> Правила
+                </a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-shield-alt"></i> Админ
+                </a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <span id="currentUser">Гость</span>
+                    <button class="btn btn-sm btn-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-file-contract"></i> Условия использования</h1>
+            <p>Правила использования платформы CyberTournament Hub</p>
+        </div>
+        
+        <div class="card">
+            <h2>1. Принятие условий</h2>
+            <p>Используя наш сервис, вы соглашаетесь с условиями, изложенными ниже. Если вы не согласны с этими условиями, пожалуйста, не используйте наш сервис.</p>
+            
+            <h2>2. Регистрация аккаунта</h2>
+            <p>Для использования некоторых функций сервиса требуется регистрация аккаунта. Вы обязуетесь предоставлять точную и актуальную информацию при регистрации.</p>
+            
+            <h2>3. Обязанности пользователей</h2>
+            <ul class="rules-list">
+                <li>Соблюдать правила честной игры</li>
+                <li>Уважать других участников</li>
+                <li>Не использовать читы и другое нечестное ПО</li>
+                <li>Не создавать несколько аккаунтов для участия в одном турнире</li>
+                <li>Не размещать оскорбительный или незаконный контент</li>
+                <li>Не нарушать права интеллектуальной собственности</li>
+                <li>Не пытаться обойти систему безопасности платформы</li>
+            </ul>
+            
+            <h2>4. Турниры и соревнования</h2>
+            <p>Организаторы турниров несут ответственность за соблюдение правил турниров. Решения администраторов турниров являются окончательными.</p>
+            
+            <h2>5. Призовой фонд и выплаты</h2>
+            <p>Призовой фонд указывается в описании каждого турнира. Выплаты производятся в течение 30 дней после окончания турнира.</p>
+            
+            <h2>6. Интеллектуальная собственность</h2>
+            <p>Все материалы на сайте, включая дизайн, логотипы и контент, защищены авторским правом. Использование материалов без разрешения запрещено.</p>
+            
+            <h2>7. Ограничение ответственности</h2>
+            <p>Мы не несем ответственности за:</p>
+            <ul class="rules-list">
+                <li>Действия третьих лиц</li>
+                <li>Технические сбои вне нашего контроля</li>
+                <li>Убытки, связанные с использованием сервиса</li>
+                <li>Конфликты между участниками турниров</li>
+                <li>Нарушения правил игры участниками</li>
+            </ul>
+            
+            <h2>8. Конфиденциальность</h2>
+            <p>Мы защищаем ваши персональные данные в соответствии с нашей <a href="privacy.html">Политикой конфиденциальности</a>.</p>
+            
+            <h2>9. Изменения условий</h2>
+            <p>Мы оставляем за собой право изменять условия использования. Продолжая использовать сервис после изменений, вы соглашаетесь с новыми условиями.</p>
+            
+            <h2>10. Прекращение доступа</h2>
+            <p>Мы можем прекратить или ограничить доступ к сервису для пользователей, нарушающих условия использования.</p>
+            
+            <h2>11. Возрастные ограничения</h2>
+            <p>Использование платформы разрешено лицам старше 13 лет. Для лиц младше 18 лет требуется согласие родителей или опекунов.</p>
+            
+            <h2>12. Применимое право</h2>
+            <p>Настоящие условия регулируются законодательством Российской Федерации.</p>
+            
+            <h2>13. Контакты</h2>
+            <p>По вопросам условий использования обращайтесь: <strong>legal@cybertournament.ru</strong></p>
+            
+            <h2>14. Дата вступления в силу</h2>
+            <p>Настоящие условия вступают в силу с 1 января 2025 года.</p>
+            
+            <div class="rules-agreement">
+                <h3><i class="fas fa-check-circle"></i> Ваше согласие</h3>
+                <p>Используя платформу CyberTournament Hub, вы подтверждаете, что прочитали, поняли и согласны соблюдать настоящие Условия использования.</p>
+                <p>Если вы не согласны с каким-либо пунктом данных условий, пожалуйста, прекратите использование платформы.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>CyberTournament Hub</h3>
+                    </div>
+                    <p class="footer-description">Ведущая платформа для организации и проведения киберспортивных турниров</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a>
+                        <a href="teams.html"><i class="fas fa-users"></i> Команды</a>
+                        <a href="tournaments.html"><i class="fas fa-trophy"></i> Турниры</a>
+                        <a href="matches.html"><i class="fas fa-gamepad"></i> Матчи</a>
+                        <a href="rules.html"><i class="fas fa-book"></i> Правила</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Игры</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-crosshairs"></i> Counter-Strike 2</a>
+                        <a href="#"><i class="fas fa-fist-raised"></i> Dota 2</a>
+                        <a href="#"><i class="fas fa-bullseye"></i> Valorant</a>
+                        <a href="#"><i class="fas fa-crown"></i> League of Legends</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Overwatch 2</a>
+                        <a href="#"><i class="fas fa-bolt"></i> Fortnite</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@cybertournament.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Киберспортивная, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberTournament Hub. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Условия использования</a>
+                    <a href="cookies.html">Политика cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ панель | CyberTournament Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CYBER TOURNAMENT HUB</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Панель
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <i class="fas fa-users"></i> Команды
+                </a>
+                <a href="tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Турниры
+                </a>
+                <a href="matches.html" class="nav-link">
+                    <i class="fas fa-fist-raised"></i> Матчи
+                </a>
+                <a href="rules.html" class="nav-link">
+                    <i class="fas fa-book"></i> Правила
+                </a>
+                <a href="admin.html" class="nav-link active admin-link">
+                    <i class="fas fa-shield-alt"></i> Админ
+                </a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <span id="currentUser">Гость</span>
+                    <button class="btn btn-sm btn-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-shield-alt"></i> Панель администратора</h1>
+            <p>Полный контроль над платформой, командами и турнирами</p>
+        </div>
+
+        <!-- Статистика -->
+        <div class="admin-stats">
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <h3 id="usersCount">0</h3>
+                <p>Пользователей</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-user-shield"></i>
+                <h3 id="adminsCount">0</h3>
+                <p>Администраторов</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <h3 id="teamsCount">0</h3>
+                <p>Команд</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-trophy"></i>
+                <h3 id="tournamentsCount">0</h3>
+                <p>Турниров</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-gamepad"></i>
+                <h3 id="matchesCount">0</h3>
+                <p>Матчей</p>
+            </div>
+        </div>
+
+        <!-- Быстрые действия -->
+        <div class="card">
+            <h2><i class="fas fa-bolt"></i> Быстрые действия</h2>
+            <div class="quick-actions">
+                <button class="btn btn-primary" onclick="createTestTeam()">
+                    <i class="fas fa-plus"></i> Создать тестовую команду
+                </button>
+                
+                <button class="btn btn-success" onclick="createTestTournament()">
+                    <i class="fas fa-trophy"></i> Создать тестовый турнир
+                </button>
+                
+                <button class="btn btn-warning" onclick="resetDatabase()">
+                    <i class="fas fa-redo"></i> Сбросить тестовые данные
+                </button>
+                
+                <button class="btn btn-danger" onclick="exportDatabase()">
+                    <i class="fas fa-download"></i> Экспорт базы данных
+                </button>
+            </div>
+        </div>
+
+        <!-- Управление пользователями -->
+        <div class="card">
+            <h2><i class="fas fa-users"></i> Управление пользователями</h2>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Логин</th>
+                        <th>Email</th>
+                        <th>Роль</th>
+                        <th>Дата регистрации</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <!-- Пользователи будут загружены через JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Управление командами -->
+        <div class="card">
+            <h2><i class="fas fa-users"></i> Управление командами</h2>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Капитан</th>
+                        <th>Игра</th>
+                        <th>Рейтинг</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="teamsTableBody">
+                    <!-- Команды будут загружены через JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Управление турнирами -->
+        <div class="card">
+            <h2><i class="fas fa-trophy"></i> Управление турнирами</h2>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Игра</th>
+                        <th>Статус</th>
+                        <th>Команд</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="tournamentsTableBody">
+                    <!-- Турниры будут загружены через JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Системные настройки -->
+        <div class="card">
+            <h2><i class="fas fa-cog"></i> Системные настройки</h2>
+            <form id="settingsForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="maxTeamsPerUser"><i class="fas fa-users"></i> Максимум команд на пользователя</label>
+                        <input type="number" id="maxTeamsPerUser" name="max_teams_per_user" min="1" max="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="defaultRating"><i class="fas fa-star"></i> Начальный рейтинг команды</label>
+                        <input type="number" id="defaultRating" name="default_rating" min="0" max="5000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Сохранить настройки
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>CyberTournament Hub</h3>
+                    </div>
+                    <p class="footer-description">Ведущая платформа для организации и проведения киберспортивных турниров</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a>
+                        <a href="teams.html"><i class="fas fa-users"></i> Команды</a>
+                        <a href="tournaments.html"><i class="fas fa-trophy"></i> Турниры</a>
+                        <a href="matches.html"><i class="fas fa-gamepad"></i> Матчи</a>
+                        <a href="rules.html"><i class="fas fa-book"></i> Правила</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Игры</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-crosshairs"></i> Counter-Strike 2</a>
+                        <a href="#"><i class="fas fa-fist-raised"></i> Dota 2</a>
+                        <a href="#"><i class="fas fa-bullseye"></i> Valorant</a>
+                        <a href="#"><i class="fas fa-crown"></i> League of Legends</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Overwatch 2</a>
+                        <a href="#"><i class="fas fa-bolt"></i> Fortnite</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@cybertournament.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Киберспортивная, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberTournament Hub. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Условия использования</a>
+                    <a href="cookies.html">Политика cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/database.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    let currentAdmin = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        currentAdmin = checkAuth();
+        if (!currentAdmin || currentAdmin.role !== 'admin') {
+            window.location.href = 'index.html';
+            return;
+        }
+        
+        loadAdminData();
+        loadSettings();
+        setupSettingsForm();
+    });
+
+    function loadAdminData() {
+        const db = new Database();
+        const users = db.getAllUsers();
+        const teams = db.getAllTeams();
+        const tournaments = db.getAllTournaments();
+        const matches = db.getAllMatches();
+        
+        // Обновляем статистику
+        document.getElementById('usersCount').textContent = users.length;
+        document.getElementById('adminsCount').textContent = users.filter(u => u.role === 'admin').length;
+        document.getElementById('teamsCount').textContent = teams.length;
+        document.getElementById('tournamentsCount').textContent = tournaments.length;
+        document.getElementById('matchesCount').textContent = matches.length;
+        
+        // Загружаем таблицу пользователей
+        const usersBody = document.getElementById('usersTableBody');
+        usersBody.innerHTML = users.map(user => {
+            const isCurrentUser = user.id === currentAdmin.id;
+            const createdAt = formatDate(user.createdAt);
+            
+            return `
+                <tr>
+                    <td>${user.id.substring(0, 8)}...</td>
+                    <td>
+                        ${escapeHtml(user.username)}
+                        ${isCurrentUser ? '<span class="badge">Вы</span>' : ''}
+                    </td>
+                    <td>${escapeHtml(user.email)}</td>
+                    <td>
+                        <span class="role-badge ${user.role}">
+                            ${user.role === 'admin' ? 'Админ' : 'Пользователь'}
+                        </span>
+                    </td>
+                    <td>${createdAt}</td>
+                    <td>
+                        <div class="admin-actions">
+                            ${!isCurrentUser ? `
+                                ${user.role !== 'admin' ? `
+                                    <button class="btn btn-sm btn-success" onclick="promoteToAdmin('${user.id}')">
+                                        <i class="fas fa-user-shield"></i> Сделать админом
+                                    </button>
+                                ` : `
+                                    <button class="btn btn-sm btn-warning" onclick="demoteFromAdmin('${user.id}')">
+                                        <i class="fas fa-user"></i> Убрать права
+                                    </button>
+                                `}
+                            ` : ''}
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+        
+        // Загружаем таблицу команд
+        const teamsBody = document.getElementById('teamsTableBody');
+        teamsBody.innerHTML = teams.map(team => {
+            const captain = users.find(u => u.id === team.captainId);
+            
+            return `
+                <tr>
+                    <td>${team.id.substring(0, 8)}...</td>
+                    <td>
+                        <strong>${escapeHtml(team.name)}</strong>
+                        ${team.tag ? `[${escapeHtml(team.tag)}]` : ''}
+                    </td>
+                    <td>${captain ? escapeHtml(captain.username) : 'Неизвестно'}</td>
+                    <td>${team.game.toUpperCase()}</td>
+                    <td>${team.rating || 1000}</td>
+                    <td>
+                        <div class="admin-actions">
+                            <a href="teams.html" class="btn btn-sm">
+                                <i class="fas fa-eye"></i> Просмотр
+                            </a>
+                            <button class="btn btn-sm btn-danger" onclick="deleteTeam('${team.id}')">
+                                <i class="fas fa-trash"></i> Удалить
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+        
+        // Загружаем таблицу турниров
+        const tournamentsBody = document.getElementById('tournamentsTableBody');
+        tournamentsBody.innerHTML = tournaments.map(tournament => {
+            const statusClass = tournament.status;
+            const statusText = tournament.status === 'upcoming' ? 'Ожидает' :
+                             tournament.status === 'active' ? 'Активен' : 'Завершен';
+            
+            return `
+                <tr>
+                    <td>${tournament.id.substring(0, 8)}...</td>
+                    <td><strong>${escapeHtml(tournament.name)}</strong></td>
+                    <td>${tournament.game.toUpperCase()}</td>
+                    <td>
+                        <span class="status-badge ${statusClass}">
+                            ${statusText}
+                        </span>
+                    </td>
+                    <td>${tournament.teams.length}</td>
+                    <td>
+                        <div class="admin-actions">
+                            <a href="tournament.html?id=${tournament.id}" class="btn btn-sm">
+                                <i class="fas fa-eye"></i> Просмотр
+                            </a>
+                            <button class="btn btn-sm btn-danger" onclick="deleteTournament('${tournament.id}')">
+                                <i class="fas fa-trash"></i> Удалить
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    function loadSettings() {
+        const db = new Database();
+        const settings = db.getSettings();
+        
+        document.getElementById('maxTeamsPerUser').value = settings.maxTeamsPerUser || 1;
+        document.getElementById('defaultRating').value = settings.defaultRating || 1000;
+    }
+
+    function setupSettingsForm() {
+        const form = document.getElementById('settingsForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const settings = {
+                maxTeamsPerUser: parseInt(document.getElementById('maxTeamsPerUser').value),
+                defaultRating: parseInt(document.getElementById('defaultRating').value)
+            };
+            
+            const db = new Database();
+            db.saveSettings(settings);
+            
+            showNotification('Настройки сохранены', 'success');
+        });
+    }
+
+    function promoteToAdmin(userId) {
+        if (!confirm('Выдать права администратора этому пользователю?')) return;
+        
+        const db = new Database();
+        db.promoteToAdmin(userId);
+        
+        showNotification('Права администратора выданы', 'success');
+        setTimeout(() => {
+            loadAdminData();
+        }, 1500);
+    }
+
+    function demoteFromAdmin(userId) {
+        if (!confirm('Убрать права администратора у этого пользователя?')) return;
+        
+        const db = new Database();
+        db.demoteFromAdmin(userId);
+        
+        showNotification('Права администратора убраны', 'success');
+        setTimeout(() => {
+            loadAdminData();
+        }, 1500);
+    }
+
+    function deleteTeam(teamId) {
+        if (!confirm('Удалить эту команду? Все матчи с её участием будут удалены.')) return;
+        
+        const db = new Database();
+        db.forceDeleteTeam(teamId);
+        
+        showNotification('Команда удалена', 'success');
+        setTimeout(() => {
+            loadAdminData();
+        }, 1500);
+    }
+
+    function deleteTournament(tournamentId) {
+        if (!confirm('Удалить этот турнир? Все матчи в нём будут удалены.')) return;
+        
+        const db = new Database();
+        db.forceDeleteTournament(tournamentId);
+        
+        showNotification('Турнир удален', 'success');
+        setTimeout(() => {
+            loadAdminData();
+        }, 1500);
+    }
+
+    function createTestTeam() {
+        if (!confirm('Создать тестовую команду?')) return;
+        
+        const testTeams = [
+            { name: 'Team Spirit Test', tag: 'TS', game: 'dota2' },
+            { name: 'NAVI Test', tag: 'NAVI', game: 'cs2' },
+            { name: 'Virtus.pro Test', tag: 'VP', game: 'dota2' },
+            { name: 'G2 Esports Test', tag: 'G2', game: 'valorant' },
+            { name: 'Fnatic Test', tag: 'FNC', game: 'lol' }
+        ];
+        
+        const randomTeam = testTeams[Math.floor(Math.random() * testTeams.length)];
+        
+        const teamData = {
+            name: randomTeam.name,
+            tag: randomTeam.tag,
+            game: randomTeam.game,
+            captainId: currentAdmin.id,
+            players: [
+                { nickname: 'Test Captain', role: 'captain' },
+                { nickname: 'Test Player 1', role: 'player' },
+                { nickname: 'Test Player 2', role: 'player' }
+            ],
+            description: 'Тестовая команда создана администратором'
+        };
+        
+        const db = new Database();
+        
+        try {
+            db.createTeam(teamData);
+            showNotification('Тестовая команда создана', 'success');
+            setTimeout(() => {
+                loadAdminData();
+            }, 1500);
+        } catch (error) {
+            showNotification('Ошибка: ' + error.message, 'error');
+        }
+    }
+
+    function createTestTournament() {
+        if (!confirm('Создать тестовый турнир?')) return;
+        
+        const testTournaments = [
+            { name: 'CS2 Championship 2024 Test', game: 'cs2' },
+            { name: 'Dota 2 Major Tournament Test', game: 'dota2' },
+            { name: 'Valorant Masters Test', game: 'valorant' },
+            { name: 'LoL Spring Split Test', game: 'lol' }
+        ];
+        
+        const randomTournament = testTournaments[Math.floor(Math.random() * testTournaments.length)];
+        
+        const db = new Database();
+        const teamsByGame = db.getTeamsByGame(randomTournament.game);
+        const availableTeams = teamsByGame.slice(0, 8);
+        
+        if (availableTeams.length < 4) {
+            showNotification('Недостаточно команд для создания турнира', 'error');
+            return;
+        }
+        
+        const tournamentData = {
+            name: randomTournament.name,
+            game: randomTournament.game,
+            creatorId: currentAdmin.id,
+            teams: availableTeams.map(team => team.id),
+            matchType: 'bo1',
+            format: 'single',
+            description: 'Тестовый турнир создан администратором',
+            maxTeams: 8,
+            prizePool: 10000
+        };
+        
+        try {
+            const tournament = db.createTournament(tournamentData);
+            db.generateTournamentBracket(tournament.id, availableTeams);
+            
+            showNotification('Тестовый турнир создан с сеткой', 'success');
+            setTimeout(() => {
+                loadAdminData();
+            }, 1500);
+        } catch (error) {
+            showNotification('Ошибка: ' + error.message, 'error');
+        }
+    }
+
+    function resetDatabase() {
+        if (!confirm('Сбросить все тестовые данные? Это действие нельзя отменить.')) return;
+        
+        // Удаляем все данные из localStorage
+        const keys = Object.keys(localStorage);
+        keys.forEach(key => {
+            if (key.startsWith('db_')) {
+                localStorage.removeItem(key);
+            }
+        });
+        
+        // Удаляем текущего пользователя
+        localStorage.removeItem('currentUser');
+        
+        showNotification('База данных сброшена', 'success');
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1500);
+    }
+
+    function exportDatabase() {
+        const db = new Database();
+        const data = {
+            users: db.getAllUsers(),
+            teams: db.getAllTeams(),
+            tournaments: db.getAllTournaments(),
+            matches: db.getAllMatches(),
+            settings: db.getSettings(),
+            exportDate: new Date().toISOString()
+        };
+        
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `cybertournament-backup-${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        showNotification('База данных экспортирована', 'success');
+    }
+    </script>
+</body>
+</html>

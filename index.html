@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberTournament Hub | Главная</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CYBER TOURNAMENT HUB</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link active">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Панель
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <i class="fas fa-users"></i> Команды
+                </a>
+                <a href="tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Турниры
+                </a>
+                <a href="matches.html" class="nav-link">
+                    <i class="fas fa-fist-raised"></i> Матчи
+                </a>
+                <a href="rules.html" class="nav-link">
+                    <i class="fas fa-book"></i> Правила
+                </a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-shield-alt"></i> Админ
+                </a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <span id="currentUser">Гость</span>
+                    <button class="btn btn-sm btn-primary" onclick="showAuthModal()">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Модальные окна авторизации -->
+        <div id="authModal" class="modal">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h3><i class="fas fa-sign-in-alt"></i> Вход в систему</h3>
+                    <button class="modal-close" onclick="closeModal('authModal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginUsername"><i class="fas fa-user"></i> Логин</label>
+                            <input type="text" id="loginUsername" name="username" class="form-control" placeholder="Введите логин" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword"><i class="fas fa-lock"></i> Пароль</label>
+                            <input type="password" id="loginPassword" name="password" class="form-control" placeholder="Введите пароль" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                    </form>
+                    <div class="auth-switch">
+                        <p>Нет аккаунта? <a href="#" onclick="showRegisterModal()">Зарегистрироваться</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="registerModal" class="modal">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h3><i class="fas fa-user-plus"></i> Регистрация</h3>
+                    <button class="modal-close" onclick="closeModal('registerModal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="regUsername"><i class="fas fa-user"></i> Логин</label>
+                            <input type="text" id="regUsername" name="username" class="form-control" placeholder="Придумайте логин" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regEmail"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="regEmail" name="email" class="form-control" placeholder="Введите email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regNickname"><i class="fas fa-id-card"></i> Никнейм</label>
+                            <input type="text" id="regNickname" name="nickname" class="form-control" placeholder="Ваш никнейм в игре" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPassword"><i class="fas fa-lock"></i> Пароль</label>
+                            <input type="password" id="regPassword" name="password" class="form-control" placeholder="Придумайте пароль" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirmPassword"><i class="fas fa-lock"></i> Подтверждение пароля</label>
+                            <input type="password" id="regConfirmPassword" name="confirm_password" class="form-control" placeholder="Повторите пароль" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
+                    </form>
+                    <div class="auth-switch">
+                        <p>Уже есть аккаунт? <a href="#" onclick="showAuthModal()">Войти</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Герой секция -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title"><span class="gradient-text">КИБЕРСПОРТИВНЫЕ ТУРНИРЫ</span><br>ПРОФЕССИОНАЛЬНОЕ УПРАВЛЕНИЕ</h1>
+                <p class="hero-subtitle">Организуйте и участвуйте в турнирах по CS2, Dota 2, Valorant и другим дисциплинам</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-lg" onclick="showRegisterModal()"><i class="fas fa-rocket"></i> Начать турнир</button>
+                    <a href="#features" class="btn btn-outline btn-lg"><i class="fas fa-info-circle"></i> Узнать больше</a>
+                </div>
+            </div>
+            <div class="hero-games">
+                <div class="game-icon"><i class="fas fa-crosshairs"></i><span>CS2</span></div>
+                <div class="game-icon"><i class="fas fa-fist-raised"></i><span>Dota 2</span></div>
+                <div class="game-icon"><i class="fas fa-bullseye"></i><span>Valorant</span></div>
+                <div class="game-icon"><i class="fas fa-crown"></i><span>LoL</span></div>
+            </div>
+        </section>
+
+        <!-- Особенности -->
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title">Почему выбирают нас?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Профессиональные турниры</h3>
+                        <p>Организация турниров любого масштаба с автоматической генерацией сеток и системой рейтингов</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Управление командами</h3>
+                        <p>Создавайте команды, управляйте составом, отслеживайте статистику и прогресс игроков</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Подробная аналитика</h3>
+                        <p>Детальная статистика по матчам, турнирам и игрокам для анализа и улучшения навыков</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Безопасность</h3>
+                        <p>Защищенная платформа с проверкой результатов и предотвращением читерства</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Как это работает -->
+        <section class="how-it-works">
+            <div class="container">
+                <h2 class="section-title">Как это работает?</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Регистрация</h3>
+                        <p>Создайте аккаунт и заполните свой профиль</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Создание команды</h3>
+                        <p>Соберите команду и добавьте игроков</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Участие в турнире</h3>
+                        <p>Зарегистрируйтесь в доступных турнирах</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Побеждайте</h3>
+                        <p>Выигрывайте матчи и получайте награды</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Статистика -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item"><i class="fas fa-users"></i><h3 id="usersCount">0</h3><p>Пользователей</p></div>
+                    <div class="stat-item"><i class="fas fa-trophy"></i><h3 id="tournamentsCount">0</h3><p>Турниров</p></div>
+                    <div class="stat-item"><i class="fas fa-gamepad"></i><h3 id="matchesCount">0</h3><p>Матчей</p></div>
+                    <div class="stat-item"><i class="fas fa-star"></i><h3 id="teamsCount">0</h3><p>Команд</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Активные турниры -->
+        <section class="active-tournaments">
+            <div class="container">
+                <h2 class="section-title">Активные турниры</h2>
+                <div id="homeTournaments" class="tournaments-grid">
+                    <!-- Турниры будут загружены через JS -->
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="tournaments.html" class="btn btn-primary">
+                        <i class="fas fa-trophy"></i> Все турниры
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>CyberTournament Hub</h3>
+                    </div>
+                    <p class="footer-description">Ведущая платформа для организации и проведения киберспортивных турниров</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a>
+                        <a href="teams.html"><i class="fas fa-users"></i> Команды</a>
+                        <a href="tournaments.html"><i class="fas fa-trophy"></i> Турниры</a>
+                        <a href="matches.html"><i class="fas fa-gamepad"></i> Матчи</a>
+                        <a href="rules.html"><i class="fas fa-book"></i> Правила</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Игры</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-crosshairs"></i> Counter-Strike 2</a>
+                        <a href="#"><i class="fas fa-fist-raised"></i> Dota 2</a>
+                        <a href="#"><i class="fas fa-bullseye"></i> Valorant</a>
+                        <a href="#"><i class="fas fa-crown"></i> League of Legends</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Overwatch 2</a>
+                        <a href="#"><i class="fas fa-bolt"></i> Fortnite</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@cybertournament.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Киберспортивная, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberTournament Hub. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Условия использования</a>
+                    <a href="cookies.html">Политика cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/database.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    // Загрузка статистики
+    document.addEventListener('DOMContentLoaded', function() {
+        const db = new Database();
+        db.init();
+        
+        // Загружаем статистику
+        const users = db.getAllUsers();
+        const tournaments = db.getAllTournaments();
+        const matches = db.getAllMatches();
+        const teams = db.getAllTeams();
+        
+        document.getElementById('usersCount').textContent = users.length;
+        document.getElementById('tournamentsCount').textContent = tournaments.length;
+        document.getElementById('matchesCount').textContent = matches.length;
+        document.getElementById('teamsCount').textContent = teams.length;
+        
+        // Загружаем активные турниры
+        loadActiveTournaments();
+        
+        // Настройка форм
+        setupForms();
+        
+        // Проверяем авторизацию
+        checkAuth();
+    });
+
+    function checkAuth() {
+        const currentUser = localStorage.getItem('currentUser');
+        if (currentUser) {
+            const user = JSON.parse(currentUser);
+            document.getElementById('currentUser').textContent = user.nickname || user.username;
+        }
+    }
+
+    function loadActiveTournaments() {
+        const db = new Database();
+        const tournaments = db.getAllTournaments();
+        const activeTournaments = tournaments.filter(t => 
+            t.status === 'active' || t.status === 'upcoming'
+        ).slice(0, 4);
+        
+        const container = document.getElementById('homeTournaments');
+        
+        if (activeTournaments.length === 0) {
+            container.innerHTML = `
+                <div class="empty-tournaments">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Нет активных турниров</h3>
+                    <p>Будьте первым, кто создаст турнир!</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = activeTournaments.map(tournament => {
+            const statusClass = tournament.status === 'upcoming' ? 'status-upcoming' : 'status-active';
+            const statusText = tournament.status === 'upcoming' ? 'Ожидается' : 'В процессе';
+            
+            return `
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <h3>${escapeHtml(tournament.name)}</h3>
+                        <span class="tournament-status ${statusClass}">${statusText}</span>
+                    </div>
+                    <div class="tournament-info">
+                        <p><i class="fas fa-gamepad"></i> ${tournament.game.toUpperCase()}</p>
+                        <p><i class="fas fa-users"></i> Команд: ${tournament.teams.length}</p>
+                        ${tournament.prizePool > 0 ? `<p><i class="fas fa-trophy"></i> $${tournament.prizePool.toLocaleString()}</p>` : ''}
+                    </div>
+                    <div class="tournament-actions">
+                        <a href="tournament.html?id=${tournament.id}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-eye"></i> Подробнее
+                        </a>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function setupForms() {
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('loginUsername').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                const db = new Database();
+                const users = db.getAllUsers();
+                const user = users.find(u => u.username === username);
+                
+                if (!user) {
+                    showNotification('Пользователь не найден', 'error');
+                    return;
+                }
+                
+                // Простая проверка пароля (в реальном приложении используйте хеширование)
+                if (user.password !== password) {
+                    showNotification('Неверный пароль', 'error');
+                    return;
+                }
+                
+                // Сохраняем пользователя в localStorage
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                
+                showNotification('Вход выполнен успешно!', 'success');
+                closeModal('authModal');
+                
+                // Обновляем интерфейс
+                document.getElementById('currentUser').textContent = user.nickname || user.username;
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            });
+        }
+        
+        if (registerForm) {
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('regUsername').value;
+                const email = document.getElementById('regEmail').value;
+                const nickname = document.getElementById('regNickname').value;
+                const password = document.getElementById('regPassword').value;
+                const confirmPassword = document.getElementById('regConfirmPassword').value;
+                
+                // Валидация
+                if (username.length < 3 || username.length > 20) {
+                    showNotification('Логин должен быть 3-20 символов', 'error');
+                    return;
+                }
+                
+                if (!email.includes('@')) {
+                    showNotification('Введите корректный email', 'error');
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    showNotification('Пароль должен быть минимум 6 символов', 'error');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showNotification('Пароли не совпадают', 'error');
+                    return;
+                }
+                
+                const db = new Database();
+                const users = db.getAllUsers();
+                
+                // Проверяем существование пользователя
+                if (users.find(u => u.username === username)) {
+                    showNotification('Этот логин уже занят', 'error');
+                    return;
+                }
+                
+                if (users.find(u => u.email === email)) {
+                    showNotification('Этот email уже зарегистрирован', 'error');
+                    return;
+                }
+                
+                // Создаем нового пользователя
+                const newUser = {
+                    id: 'user_' + Date.now(),
+                    username: username,
+                    email: email,
+                    password: password, // Внимание: в реальном приложении пароль должен быть хеширован!
+                    nickname: nickname,
+                    role: 'user',
+                    createdAt: new Date().toISOString(),
+                    isVerified: false,
+                    hasTeam: false,
+                    teamId: null
+                };
+                
+                users.push(newUser);
+                db.saveToFile('users.json', users);
+                
+                // Сохраняем пользователя в localStorage
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                
+                showNotification('Регистрация успешна!', 'success');
+                closeModal('registerModal');
+                
+                // Обновляем интерфейс
+                document.getElementById('currentUser').textContent = newUser.nickname;
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            });
+        }
+    }
+
+    // Функции для работы с модальными окнами
+    function showAuthModal() {
+        closeModal('registerModal');
+        document.getElementById('authModal').classList.add('active');
+    }
+
+    function showRegisterModal() {
+        closeModal('authModal');
+        document.getElementById('registerModal').classList.add('active');
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('active');
+    }
+
+    // Функция для показа уведомлений
+    function showNotification(message, type = 'info') {
+        const oldNotifications = document.querySelectorAll('.notification');
+        oldNotifications.forEach(n => n.remove());
+        
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        const icons = { 
+            'success': 'check-circle', 
+            'error': 'exclamation-circle', 
+            'warning': 'exclamation-triangle', 
+            'info': 'info-circle' 
+        };
+        notification.innerHTML = `<i class="fas fa-${icons[type] || 'info-circle'}"></i><span>${message}</span>`;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => notification.classList.add('show'), 10);
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // Экранирование HTML
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Закрытие модальных окон при клике вне их
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.classList.remove('active');
+        }
+    }
+    </script>
+</body>
+</html>

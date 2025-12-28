@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности | CyberTournament Hub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CYBER TOURNAMENT HUB</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Панель
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <i class="fas fa-users"></i> Команды
+                </a>
+                <a href="tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Турниры
+                </a>
+                <a href="matches.html" class="nav-link">
+                    <i class="fas fa-fist-raised"></i> Матчи
+                </a>
+                <a href="rules.html" class="nav-link">
+                    <i class="fas fa-book"></i> Правила
+                </a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <i class="fas fa-shield-alt"></i> Админ
+                </a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <span id="currentUser">Гость</span>
+                    <button class="btn btn-sm btn-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-shield-alt"></i> Политика конфиденциальности</h1>
+            <p>Как мы защищаем и используем ваши данные</p>
+        </div>
+        
+        <div class="card">
+            <h2>1. Введение</h2>
+            <p>CyberTournament Hub уважает вашу конфиденциальность и обязуется защищать ваши персональные данные. Эта политика объясняет, как мы собираем, используем и защищаем вашу информацию.</p>
+            
+            <h2>2. Сбор информации</h2>
+            <p>Мы собираем только необходимую информацию для предоставления услуг:</p>
+            <ul class="rules-list">
+                <li><strong>Регистрационные данные:</strong> логин, email, никнейм</li>
+                <li><strong>Данные профиля:</strong> информация о командах, игровых предпочтениях</li>
+                <li><strong>Турнирная статистика:</strong> результаты матчей, рейтинги</li>
+                <li><strong>Технические данные:</strong> IP-адрес, тип браузера, устройство</li>
+                <li><strong>Коммуникационные данные:</strong> сообщения, обращения в поддержку</li>
+            </ul>
+            
+            <h2>3. Использование информации</h2>
+            <p>Информация используется исключительно для:</p>
+            <ul class="rules-list">
+                <li>Регистрации и аутентификации пользователей</li>
+                <li>Управления командами и турнирами</li>
+                <li>Отображения статистики и результатов</li>
+                <li>Коммуникации с пользователями</li>
+                <li>Улучшения работы платформы</li>
+                <li>Обеспечения безопасности</li>
+            </ul>
+            
+            <h2>4. Защита данных</h2>
+            <p>Мы используем современные методы защиты ваших данных:</p>
+            <ul class="rules-list">
+                <li>Шифрование передаваемых данных (HTTPS)</li>
+                <li>Хранение паролей в хешированном виде</li>
+                <li>Регулярное обновление систем безопасности</li>
+                <li>Ограниченный доступ к данным</li>
+                <li>Резервное копирование информации</li>
+            </ul>
+            
+            <h2>5. Передача данных третьим лицам</h2>
+            <p>Мы не передаем ваши персональные данные третьим лицам, за исключением:</p>
+            <ul class="rules-list">
+                <li>Случаев, предусмотренных законодательством</li>
+                <li>С вашего явного согласия</li>
+                <li>Для предоставления услуг (хостинг, аналитика)</li>
+                <li>В анонимизированном виде для статистики</li>
+            </ul>
+            
+            <h2>6. Хранение данных</h2>
+            <p>Мы храним ваши данные:</p>
+            <ul class="rules-list">
+                <li>Пока вы используете платформу</li>
+                <li>В течение срока, необходимого для предоставления услуг</li>
+                <li>В соответствии с требованиями законодательства</li>
+                <li>До момента удаления аккаунта</li>
+            </ul>
+            
+            <h2>7. Cookies и аналогичные технологии</h2>
+            <p>Мы используем cookies для улучшения работы сайта. Подробнее в нашей <a href="cookies.html">Политике cookies</a>.</p>
+            
+            <h2>8. Ваши права</h2>
+            <p>Вы имеете право:</p>
+            <ul class="rules-list">
+                <li>Доступа к вашим данным</li>
+                <li>Исправления неточной информации</li>
+                <li>Удаления ваших данных</li>
+                <li>Ограничения обработки данных</li>
+                <li>Переноса данных</li>
+                <li>Отказа от обработки данных</li>
+            </ul>
+            
+            <h2>9. Дети и конфиденциальность</h2>
+            <p>Платформа не предназначена для детей младше 13 лет. Мы не собираем сознательно информацию от детей.</p>
+            
+            <h2>10. Международные передачи данных</h2>
+            <p>Данные могут обрабатываться за пределами вашей страны. Мы обеспечиваем адекватную защиту при международных передачах.</p>
+            
+            <h2>11. Изменения в политике</h2>
+            <p>Мы можем обновлять политику конфиденциальности. Все изменения будут опубликованы на этой странице.</p>
+            
+            <h2>12. Контакты</h2>
+            <p>По вопросам конфиденциальности обращайтесь:</p>
+            <ul class="rules-list">
+                <li><strong>Email:</strong> privacy@cybertournament.ru</li>
+                <li><strong>Телефон:</strong> +7 (999) 123-45-67</li>
+                <li><strong>Адрес:</strong> Москва, ул. Киберспортивная, 15</li>
+            </ul>
+            
+            <h2>13. Жалобы</h2>
+            <p>Если у вас есть жалобы на обработку ваших данных, вы можете обратиться в регулирующий орган.</p>
+            
+            <h2>14. Согласие</h2>
+            <p>Используя нашу платформу, вы соглашаетесь с условиями этой политики конфиденциальности.</p>
+            
+            <div class="rules-agreement">
+                <h3><i class="fas fa-shield-alt"></i> Ваша безопасность — наш приоритет</h3>
+                <p>Мы постоянно работаем над улучшением защиты ваших данных и соблюдением лучших практик конфиденциальности.</p>
+                <p><strong>Дата последнего обновления:</strong> 29 декабря 2025 года</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>CyberTournament Hub</h3>
+                    </div>
+                    <p class="footer-description">Ведущая платформа для организации и проведения киберспортивных турниров</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Панель управления</a>
+                        <a href="teams.html"><i class="fas fa-users"></i> Команды</a>
+                        <a href="tournaments.html"><i class="fas fa-trophy"></i> Турниры</a>
+                        <a href="matches.html"><i class="fas fa-gamepad"></i> Матчи</a>
+                        <a href="rules.html"><i class="fas fa-book"></i> Правила</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Игры</h4>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-crosshairs"></i> Counter-Strike 2</a>
+                        <a href="#"><i class="fas fa-fist-raised"></i> Dota 2</a>
+                        <a href="#"><i class="fas fa-bullseye"></i> Valorant</a>
+                        <a href="#"><i class="fas fa-crown"></i> League of Legends</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Overwatch 2</a>
+                        <a href="#"><i class="fas fa-bolt"></i> Fortnite</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@cybertournament.ru</p>
+                        <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Киберспортивная, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CyberTournament Hub. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Условия использования</a>
+                    <a href="cookies.html">Политика cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+    });
+    </script>
+</body>
+</html>
